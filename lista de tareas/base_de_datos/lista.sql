@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2025 at 10:38 PM
+-- Generation Time: Apr 17, 2025 at 10:42 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -32,6 +32,7 @@ CREATE TABLE `tareas` (
   `Tarea` text NOT NULL,
   `Descripcion` text NOT NULL,
   `Esta_Borrado` tinyint(1) NOT NULL DEFAULT 0,
+  `Fecha_Creacion` datetime DEFAULT current_timestamp(),
   `Fecha_Inicial` datetime DEFAULT NULL,
   `Fecha_Final` datetime DEFAULT NULL,
   `Esta_Finalizado` tinyint(1) NOT NULL DEFAULT 0
@@ -41,8 +42,8 @@ CREATE TABLE `tareas` (
 -- Dumping data for table `tareas`
 --
 
-INSERT INTO `tareas` (`id`, `Tarea`, `Descripcion`, `Esta_Borrado`, `Fecha_Inicial`, `Fecha_Final`, `Esta_Finalizado`) VALUES
-(15, 'asdasdasd', 'asdasd', 0, '2025-04-17 17:36:54', '2025-04-18 17:36:00', 0);
+INSERT INTO `tareas` (`id`, `Tarea`, `Descripcion`, `Esta_Borrado`, `Fecha_Creacion`, `Fecha_Inicial`, `Fecha_Final`, `Esta_Finalizado`) VALUES
+(15, 'asdasdasd', 'asdasd', 0, '2025-04-17 17:42:24', '2025-04-17 17:36:54', '2025-04-18 17:36:00', 0);
 
 -- --------------------------------------------------------
 
