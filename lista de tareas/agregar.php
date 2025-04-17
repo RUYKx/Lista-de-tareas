@@ -7,8 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    
     <?php
+    date_default_timezone_set('America/Argentina/Buenos_Aires'); // Set timezone to Argentina
+    $current_time = date('Y-m-d H:i:s'); // Include hours, minutes, and seconds
     echo'
     <h1>Agregar Tarea</h1>
 
@@ -30,6 +31,8 @@
 
     <h3>Tiempo limite</h3>
     <input type="datetime-local" name="Fecha_Final">
+
+    <input type="hidden" name="Fecha_Inicial" value="'.date('Y-m-d H:i:s').'">
 
     <input type="submit">
 
