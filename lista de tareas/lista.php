@@ -21,17 +21,22 @@
       </thead>
 <?php
 include 'conex.php';
-$query="SELECT * FROM `tareas` WHERE Esta_Finalizado = 0 AND Esta_Borrado = 0";
+$query="SELECT * FROM `tareas` WHERE Esta_Borrado = 0";
 $res=mysqli_query($connection,$query);
 while($row=mysqli_fetch_array($res))
 {
+    if($row["Esta_Finalizado"]==0){
+      $esta_finalizado_texto="Pendiente";
+    }else{
+      $esta_finalizado_texto="Completado";
+    }
     echo'
     <tbody scope="col">
       <tr scope="col">
         <th scope="col"></th>
         <td scope="col">'.$row["Tarea"].'</td>
         <td scope="col">'.$row["Descripcion"].'</td>
-        <th scope="col">Pendiente</th>
+        <th scope="col">'.$esta_finalizado_texto.'</th>
         <th scope="col"><a href="./editar.php?id='.$row["id"].'"><button>Editar</button></a></th>
         <th scope="col"><a href="./borrar.php?id='.$row["id"].'"><button>Borrar</button></a></th>
       </tr>
