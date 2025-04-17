@@ -9,8 +9,8 @@
 <body>
 <?php
 include "conex.php";
-$tarea=$_POST['tarea'];
-$descripcion=$_POST['descripcion'];
+$tarea=$_POST['Tarea'];
+$descripcion=$_POST['Descripcion'];
 $query="INSERT INTO `tareas` (`id`, `Tarea`, `Descripcion`, `Esta_Finalizado`) VALUES (NULL, '".$tarea."', '".$descripcion."', '0');";
 $res=mysqli_query($connection,$query);
 ?>
