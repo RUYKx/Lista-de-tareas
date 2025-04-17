@@ -16,13 +16,13 @@
     <h1>Actualizar</h1>
     <form action="mod_editar.php" method="post">
 
-    <input type="text" name="id" placeholder="Pk" value="'.$row["id"].'" disabled>
+    <input type="text" name="id" value="'.$row["id"].'" disabled>
 
-     <input type="text" name="Tarea" placeholder="Tarea" value="'.$row["Tarea"].'" >
+     <input type="text" name="Tarea" value="'.$row["Tarea"].'" >
 
-    <input type="text" name="num" placeholder="Numero" value="'.$row["Descripcion"].'">
+    <input type="text" name="Descripcion" value="'.$row["Descripcion"].'">
 
-    <select name="descripcion">
+    <select name="Esta_Finalizado">
     <option value="0">Pendiente</option>
     <option value="1">Completado</option>
     </select>
