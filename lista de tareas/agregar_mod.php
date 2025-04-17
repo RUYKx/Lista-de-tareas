@@ -11,7 +11,8 @@
 include "conex.php";
 $tarea=$_POST['Tarea'];
 $descripcion=$_POST['Descripcion'];
-$query="INSERT INTO `tareas` (`id`, `Tarea`, `Descripcion`, `Esta_Finalizado`) VALUES (NULL, '".$tarea."', '".$descripcion."', '0');";
+$esta_finalizado=$_POST['Esta_Finalizado'];
+$query="INSERT INTO `tareas` (`id`, `Tarea`, `Descripcion`, `Esta_Finalizado`) VALUES (NULL, '".$tarea."', '".$descripcion."', '".$esta_finalizado."');";
 $res=mysqli_query($connection,$query);
 ?>
 <h1>Agregado Con Exito</h1>
