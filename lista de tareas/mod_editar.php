@@ -13,7 +13,8 @@ $id=$_POST['id'];
 $tarea=$_POST['Tarea'];
 $descripcion=$_POST['Descripcion'];
 $estado=$_POST['Esta_Finalizado'];
-$query="UPDATE `tareas` SET `Tarea` = '".$tarea."', `Descripcion` = '".$descripcion."', `Esta_Finalizado` = '".$estado."' WHERE `tareas`.`id` = '".$id."';";
+$fecha_final=$_POST['Fecha_Final'];
+$query="UPDATE `tareas` SET `Tarea` = '".$tarea."', `Descripcion` = '".$descripcion."', `Esta_Finalizado` = '".$estado."', `Fecha_Final` = '".$fecha_final."' WHERE `tareas`.`id` = '".$id."';";
 $res=mysqli_query($connection,$query);
 ?>
 <h1>Editado Con Exito</h1>

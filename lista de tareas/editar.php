@@ -15,17 +15,24 @@
    echo'
     <h1>Actualizar</h1>
     <form action="mod_editar.php" method="post">
-
+    
+    <h3>id</h3>
     <input type="text" name="id" value="'.$row["id"].'" disabled>
 
-     <input type="text" name="Tarea" value="'.$row["Tarea"].'" >
+    <h3>Nombre de la tarea</h3>
+    <input type="text" name="Tarea" value="'.$row["Tarea"].'" >
 
+    <h3>Descripcion</h3>
     <input type="text" name="Descripcion" value="'.$row["Descripcion"].'">
 
+    <h3>Estado</h3>
     <select name="Esta_Finalizado">
     <option value="0">Pendiente</option>
     <option value="1">Completado</option>
     </select>
+
+    <h3>Tiempo limite</h3>
+    <input type="datetime-local" name="Fecha_Final" value="'.$row["Fecha_Final"].'">
 
     <button type="submit" name="id" value="'.$row["id"].'">Enviar</button>
     </form>
