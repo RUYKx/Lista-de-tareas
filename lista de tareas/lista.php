@@ -17,6 +17,7 @@
         <th scope="col">Estado</th>
         <th scope="col">Fecha de inicio</th>
         <th scope="col">Fecha limite</th>
+        <th scope="col">Cambiar Estado</th>
         <th scope="col">Editar</th>
         <th scope="col">Borrar</th>
       </tr>
@@ -29,8 +30,10 @@ while($row=mysqli_fetch_array($res))
 {
     if($row["Esta_Finalizado"]==0){
       $esta_finalizado_texto="Pendiente";
+      $cambiar_estado_texto="Completado";
     }else{
       $esta_finalizado_texto="Completado";
+      $cambiar_estado_texto="Pendiente";
     }
     echo'
     <tbody scope="col">
@@ -41,6 +44,7 @@ while($row=mysqli_fetch_array($res))
         <th scope="col">'.$esta_finalizado_texto.'</th>
         <th scope="col">'.$row["Fecha_Inicial"].'</th>
         <td scope="col">'.$row["Fecha_Final"].'</td>
+        <th scope="col"><a href="./cambiarEstadoTarea.php?id='.$row["id"].'&Esta_Finalizado='.$row["Esta_Finalizado"].'"><button>'.$cambiar_estado_texto.'</button></a></th>
         <th scope="col"><a href="./editar.php?id='.$row["id"].'"><button>Editar</button></a></th>
         <th scope="col"><a href="./borrar.php?id='.$row["id"].'"><button>Borrar</button></a></th>
       </tr>
