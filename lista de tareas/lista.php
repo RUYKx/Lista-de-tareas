@@ -15,6 +15,7 @@
         <th scope="col">Tarea</th>
         <th scope="col">Descripcion</th>
         <th scope="col">Estado</th>
+        <th scope="col">Fecha de inicio</th>
         <th scope="col">Fecha limite</th>
         <th scope="col">Editar</th>
         <th scope="col">Borrar</th>
@@ -38,6 +39,7 @@ while($row=mysqli_fetch_array($res))
         <td scope="col">'.$row["Tarea"].'</td>
         <td scope="col">'.$row["Descripcion"].'</td>
         <th scope="col">'.$esta_finalizado_texto.'</th>
+        <th scope="col">'.$row["Fecha_Inicial"].'</th>
         <td scope="col">'.$row["Fecha_Final"].'</td>
         <th scope="col"><a href="./editar.php?id='.$row["id"].'"><button>Editar</button></a></th>
         <th scope="col"><a href="./borrar.php?id='.$row["id"].'"><button>Borrar</button></a></th>

@@ -30,8 +30,11 @@
     <option value="0">Pendiente</option>
     <option value="1">Completado</option>
     </select>
+    
+    <h3>Fecha de inicio</h3>
+    <input type="datetime-local" name="Fecha_Inicial" value="'.$row["Fecha_Inicial"].'">
 
-    <h3>Tiempo limite</h3>
+    <h3>Fecha limite</h3>
     <input type="datetime-local" name="Fecha_Final" value="'.$row["Fecha_Final"].'">
 
     <button type="submit" name="id" value="'.$row["id"].'">Enviar</button>
