@@ -1,11 +1,11 @@
 <?php
 require "conex.php";
 
-
+// Funcion que devuelve una tarea de la base de datos
 function getTarea($id)
 {
-    
-    $query = "SELECT * FROM `tareas` WHERE id = '".$id. "'";
+
+    $query = "SELECT * FROM `tareas` WHERE id = '" . $id . "'";
     $res = mysqli_query($GLOBALS['connection'], $query);
     return mysqli_fetch_assoc($res);
 }
