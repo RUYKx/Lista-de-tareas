@@ -15,6 +15,10 @@
     <a href="./lista.php"><button>Lista</button></a>
 
     <a href="./agregar.php"><button>Agregar Tarea</button></a>
+
+    <a href="./usuarios/iniciarSesion.php"><button>Iniciar Sesion</button></a>
+
+    <a href="./usuarios/registrarse.php"><button>Registrarse</button></a>
     </form>
 </body>
 
