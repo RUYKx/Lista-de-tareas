@@ -48,20 +48,18 @@ function insertUsuario($usuario, $password, $email)
     mysqli_query($GLOBALS['connection'], $query);
 }
 
-/*
-
 function logIn($usuario, $password)
 {
     if(isset($usuario) && isset($password)){
         $query = "SELECT * FROM `usuarios` WHERE `Usuario` = '" . $usuario . "' AND `Password` = '" . $password . "'";
         if(!empty(mysqli_query($GLOBALS['connection'], $query)))
         {
-            
+            session_start();
+            $_SESSION['LoggedIn'] = true;
+            $_SESSION['Usuario'] = $usuario; 
         }
     }
     else{
         return false;
     }
 }
-
-*/
