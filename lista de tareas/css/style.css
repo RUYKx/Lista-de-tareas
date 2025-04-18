@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.main-content {
+    padding: 50px 20px;
+}
+
+.titulo {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.descripcion {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: #666;
+}
+
+.botones-principales {
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-dark {
+    background-color: #222;
+    color: white;
+}
+
+.btn-light {
+    background-color: #f0f0f0;
+    color: #222;
+}
+
+.btn-dark:hover {
+    background-color: #444;
+}
+
+.btn-light:hover {
+    background-color: #e0e0e0;
+}
+
+.secciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.seccion {
+    background-color: #fff;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.extra-buttons .btn-extra {
+    margin-top: 10px;
+    background-color: #ddd;
+    color: #000;
+}
