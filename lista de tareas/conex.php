@@ -1,5 +1,8 @@
 <?php
+
+// Conexión a la base de datos
 $connection = mysqli_connect('localhost', 'root', '', 'lista');
+
 /* if($connection){
    echo 'todo joya';
 }else{

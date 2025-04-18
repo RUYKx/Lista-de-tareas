@@ -1,6 +1,10 @@
 <?php
 include "conex.php";
-$query = "UPDATE `tareas` SET `Esta_Borrado` = '1' WHERE `tareas`.`id` = '" . $_GET["id"] . "'";
-mysqli_query($connection, $query);
-header("Location: lista.php");
-exit();
+include "components/utils.php";
+include "components/db_queries.php";
+
+// Elimina la tarea con el id enviado por GET
+deleteTarea($_GET["id"], $connection);
+
+// Redirige a la lista de tareas
+redirect("lista.php");

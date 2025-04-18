@@ -13,7 +13,7 @@
     include "conex.php";
     $query = "SELECT * FROM `tareas` WHERE id = '" . $_GET["id"] . "'";
     $res = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_array($res)) {
+    while ($row = mysqli_fetch_array($res)) { 
         echo '
             <h1>Actualizar</h1>
             <form action="mod_editar.php" method="post">

@@ -35,10 +35,10 @@
     </select>
 
     <h3>Fecha de inicio</h3>
-    <input type="datetime-local" name="Fecha_Inicial" value="' . date('Y-m-d H:i:s') . '">
+    <input type="datetime-local" name="Fecha_Inicial" step="1" value="' . date('Y-m-d H:i:s') . '">
 
     <h3>Fecha limite</h3>
-    <input type="datetime-local" name="Fecha_Final">
+    <input type="datetime-local" name="Fecha_Final" step="1">
 
     <input type="submit">
 

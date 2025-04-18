@@ -1,15 +1,13 @@
 
 <?php
 include "conex.php";
+include "components/utils.php";
+include "components/db_queries.php";
 
-if ($_GET["Esta_Finalizado"]) {
-    $esta_finalizado = 0;
-} else {
-    $esta_finalizado = 1;
-}
-$query = "UPDATE `tareas` SET `Esta_Finalizado` = '" . $esta_finalizado . "' WHERE `tareas`.`id` = '" . $_GET["id"] . "'";
-mysqli_query($connection, $query);
-header("Location: lista.php");
-exit();
+// Cambia el estado de la tarea a completada o no completada
+updateStatus($_GET["id"], $_GET["Esta_Finalizado"], $connection);
+
+// Redirige a la lista de tareas
+redirect("lista.php");
 ?>
 
