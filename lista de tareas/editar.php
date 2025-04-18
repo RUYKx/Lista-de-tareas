@@ -10,10 +10,9 @@
 
 <body>
     <?php
-    include "conex.php";
     include "components/db_queries.php";
     
-    $row = getTarea($_GET["id"], $connection);
+    $row = getTarea($_GET["id"]);
 
     echo
         '
