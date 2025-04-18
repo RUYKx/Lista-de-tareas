@@ -2,7 +2,6 @@
 //Set timezone to Argentina
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-include "conex.php";
 $tarea = $_POST['Tarea'];
 $descripcion = $_POST['Descripcion'];
 $esta_finalizado = $_POST['Esta_Finalizado'];
