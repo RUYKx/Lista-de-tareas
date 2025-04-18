@@ -40,3 +40,28 @@ function deleteTarea($id)
     $query = "UPDATE `tareas` SET `Esta_Borrado` = '1' WHERE `tareas`.`id` = '" . $id . "'";
     mysqli_query($GLOBALS['connection'], $query);
 }
+
+// Funcion que registra un usuario en la base de datos
+function insertUsuario($usuario, $password, $email)
+{
+    $query = "INSERT INTO `usuarios` (`Usuario`, `Password`, `Email`) VALUES ('" . $usuario . "', '" . $password . "', '" . $email . "');";
+    mysqli_query($GLOBALS['connection'], $query);
+}
+
+/*
+
+function logIn($usuario, $password)
+{
+    if(isset($usuario) && isset($password)){
+        $query = "SELECT * FROM `usuarios` WHERE `Usuario` = '" . $usuario . "' AND `Password` = '" . $password . "'";
+        if(!empty(mysqli_query($GLOBALS['connection'], $query)))
+        {
+            
+        }
+    }
+    else{
+        return false;
+    }
+}
+
+*/
