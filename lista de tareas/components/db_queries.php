@@ -1,4 +1,12 @@
 <?php
+
+function getTarea($id, $connection)
+{
+    $query = "SELECT * FROM `tareas` WHERE id = '".$id. "'";
+    $res = mysqli_query($connection, $query);
+    return mysqli_fetch_assoc($res);
+}
+
 // Funcion que añade una tarea a la base de datos
 function insertTarea($tarea, $descripcion, $esta_finalizado, $fecha_inicial, $fecha_final, $connection)
 {
