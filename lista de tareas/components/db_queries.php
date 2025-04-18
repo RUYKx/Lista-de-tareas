@@ -4,7 +4,6 @@ require "conex.php";
 // Funcion que devuelve una tarea de la base de datos
 function getTarea($id)
 {
-
     $query = "SELECT * FROM `tareas` WHERE id = '" . $id . "'";
     $res = mysqli_query($GLOBALS['connection'], $query);
     return mysqli_fetch_assoc($res);
@@ -13,8 +12,6 @@ function getTarea($id)
 // Funcion que añade una tarea a la base de datos
 function insertTarea($tarea, $descripcion, $esta_finalizado, $fecha_inicial, $fecha_final)
 {
-    echo $fecha_final;
-    echo $fecha_inicial;
     $query = "INSERT INTO `tareas` (`Tarea`, `Descripcion`, `Esta_Finalizado`, `Fecha_Final`, `Fecha_Inicial`, `Fecha_Creacion`) VALUES ('" . $tarea . "', '" . $descripcion . "', '" . $esta_finalizado . "', '" . $fecha_final . "', '" . $fecha_inicial . "', '" . date('Y-m-d H:i:s') . "');";
     mysqli_query($GLOBALS['connection'], $query);
 }
@@ -29,12 +26,8 @@ function updateTarea($id, $tarea, $descripcion, $estado, $fecha_inicial, $fecha_
 // Funcion que modifica el estado de una tarea en la base de datos
 function updateStatus($id, $estado)
 {
-    if ($estado == 1) {
-        $estado = 0;
-    } else {
-        $estado = 1;
-    }
-    $query = "UPDATE `tareas` SET `Esta_Finalizado` = '" . $estado . "' WHERE `tareas`.`id` = '" . $id . "'";
+
+    $query = "UPDATE `tareas` SET `Esta_Finalizado` = '" . !$estado . "' WHERE `tareas`.`id` = '" . $id . "'";
     mysqli_query($GLOBALS['connection'], $query);
 }
 
