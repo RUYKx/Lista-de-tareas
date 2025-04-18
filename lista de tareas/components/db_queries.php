@@ -12,6 +12,9 @@ function getTarea($id)
 // Funcion que añade una tarea a la base de datos
 function insertTarea($tarea, $descripcion, $esta_finalizado, $fecha_inicial, $fecha_final)
 {
+    // Establece la zona horaria a Buenos Aires
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+
     $query = "INSERT INTO `tareas` (`Tarea`, `Descripcion`, `Esta_Finalizado`, `Fecha_Final`, `Fecha_Inicial`, `Fecha_Creacion`) VALUES ('" . $tarea . "', '" . $descripcion . "', '" . $esta_finalizado . "', '" . $fecha_final . "', '" . $fecha_inicial . "', '" . date('Y-m-d H:i:s') . "');";
     mysqli_query($GLOBALS['connection'], $query);
 }
