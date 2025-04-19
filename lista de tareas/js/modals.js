@@ -51,19 +51,37 @@ export function createErrorModal(id, title, message,) {
     const modal = document.createElement('div');
     modal.id = id;
     modal.className = 'modal';
-    modal.style.display = 'block'; // Initially hidden
+    modal.style.display = 'flex'; // Initially hidden
 
     // Crea el contenedor del contenido del modal
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content';
 
+    // Crea el encabezado, cuerpo y pie del modal
+    const modalContentHead = document.createElement('div');
+    modalContentHead.className = 'modal-content-head';
+
+    const modalContentBody = document.createElement('div');
+    modalContentBody.className = 'modal-content-body';
+
+    const modalContentFoot = document.createElement('div');
+    modalContentFoot.className = 'modal-content-foot';
+
     // Crea el boton de cerrar
     const closeButton = document.createElement('span');
     closeButton.className = 'close-button';
-    closeButton.innerHTML = '&times;';
+    closeButton.innerHTML = 'Intentar de nuevo';
     closeButton.onclick = function () {
         document.getElementById(id).style.display = 'none';
     };
+
+    const errorImg = document.createElement('img');
+    errorImg.src = '../img/error.png'; // Ruta de la imagen de error
+    errorImg.alt = 'Error';
+    errorImg.className = 'error-img'; // Clase para la imagen de error
+    errorImg.style.width = '20%'; // Ajusta el tamaño de la imagen según sea necesario
+    errorImg.style.height = 'auto'; // Ajusta el tamaño de la imagen según sea necesario
+
 
     // Crea el titulo del modal
     const modalTitle = document.createElement('h2');
@@ -73,10 +91,22 @@ export function createErrorModal(id, title, message,) {
     const modalMessage = document.createElement('p');
     modalMessage.textContent = message;
 
+
+    // Añade al encabezado del modal el boton de cerrar y el titulo
+    modalContentHead.appendChild(errorImg);
+    modalContentHead.appendChild(modalTitle);
+
+    // Añade el mensaje al cuerpo del modal
+    modalContentBody.appendChild(modalMessage);
+
+    // Añade el boton de cerrar al pie del modal
+    modalContentFoot.appendChild(closeButton);
+
+
     // Añade los elementos al contenedor del modal
-    modalContent.appendChild(closeButton);
-    modalContent.appendChild(modalTitle);
-    modalContent.appendChild(modalMessage);
+    modalContent.appendChild(modalContentHead);
+    modalContent.appendChild(modalContentBody);
+    modalContent.appendChild(modalContentFoot);
 
     // Añade el contenedor del contenido al modal
     modal.appendChild(modalContent);

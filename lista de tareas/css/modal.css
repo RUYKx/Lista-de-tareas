@@ -1,5 +1,7 @@
 .modal {
     display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -12,36 +14,79 @@
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #ffffff;
-    margin: 10% auto;
-    padding: 25px 30px;
+    margin: 0;
+    padding: 0;
     border-radius: 16px;
-    width: 90%;
-    max-width: 500px;
+    width: 60%;
+    max-width: fit-content;
+    max-height:fit-content;
     text-align: center;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Adds a stronger shadow */
     animation: fade-in 0.4s ease-out; /* Smooth fade-in animation */
     font-family: 'Arial', sans-serif;
 }
 
+.modal-content-head {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+.modal-content-head img{
+    width: 20%;
+    height: auto;
+    margin: 12% 0 10% 0;
+    animation: shake 0.5s ease-in-out; /* Shake animation for the error icon */
+}
+.modal-content-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0%;
+}
+.modal-content-foot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5% 0;
+}
 .close-button {
-    color: #888;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    background-color: #dc3545; /* Red background */
+    color: #fff; /* White text */
+    border: none;
+    width: 70%;
+    padding: 0.8rem 0;
+    margin: 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    font-weight: normal;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
 }
 
-.close-button:hover,
-.close-button:focus {
-    color: #000;
-    text-decoration: none;
+.close-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.close-button:active {
+    background-color: #bd2130; /* Even darker red on click */
+    transform: scale(1); /* Reset zoom effect */
 }
 
 .modal-content h2 {
     font-size: 26px;
-    margin-bottom: 20px;
+    margin: 0;
+    padding: 0 0 3% 0;
     color: #333;
     font-weight: bold;
 }
@@ -49,7 +94,6 @@
 .modal-content p {
     font-size: 18px;
     color: #555;
-    margin-bottom: 25px;
     line-height: 1.6;
 }
 
