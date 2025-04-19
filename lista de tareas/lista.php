@@ -1,70 +1,203 @@
-<html lang="en">
+<?php
+// lista.php
+require_once 'components/users.php';
+require_once 'conex.php';
 
+if (!isLoggedIn()) {
+    header('Location: usuarios/iniciarSesion.php');
+    exit;
+}
+
+$contador = 1;
+$res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 ORDER BY Fecha_Final ASC");
+?>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>canon mi colchon</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-</head>
-</head>
+  <title>Lista de Tareas</title>
 
+  <!-- FontAwesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    /* Contenedor central que crece con su contenido */
+    .task-container {
+      display: table;             /* permite que el ancho dependa del contenido */
+      margin: 40px auto;          /* centra horizontalmente */
+      padding: 24px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .task-container h1 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      text-align: center;
+      color: #111;
+    }
+
+    /* Buscador */
+    .search-bar {
+      margin-bottom: 24px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color .3s;
+    }
+    .search-bar input:focus {
+      border-color: #aaa;
+    }
+
+    /* Tabla custom */
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: sans-serif;
+    }
+    .table-custom thead {
+      background: #f9f9f9;
+    }
+    .table-custom th, .table-custom td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+    .table-custom th {
+      font-weight: 600;
+      color: #444;
+    }
+    .table-custom tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Checkbox grande */
+    .table-custom input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    /* Botones con iconos */
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-size: .9rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background .3s;
+    }
+    .btn-complete {
+      background: #222;
+      color: #fff;
+    }
+    .btn-complete:hover {
+      background: #444;
+    }
+    .btn-edit {
+      background: #f2f2f2;
+      color: #333;
+    }
+    .btn-edit:hover {
+      background: #ddd;
+    }
+    .btn-delete {
+      background: #ffecec;
+      color: #c00;
+    }
+    .btn-delete:hover {
+      background: #fdd;
+    }
+  </style>
+</head>
 <body>
+  <div class="task-container">
+    <h1>Lista de Tareas</h1>
 
-  <table class="table table-dark table-striped">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Tarea</th>
-        <th scope="col">Descripcion</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Fecha de inicio</th>
-        <th scope="col">Fecha limite</th>
-        <th scope="col">Cambiar Estado</th>
-        <th scope="col">Editar</th>
-        <th scope="col">Borrar</th>
-      </tr>
-    </thead>
-    <?php
-    require_once 'conex.php';
-    $query = "SELECT * FROM `tareas` WHERE Esta_Borrado = 0";
-    $res = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_array($res)) {
-      if ($row["Esta_Finalizado"] == 0) {
-        $esta_finalizado_texto = "Pendiente";
-        $cambiar_estado_texto = "Completado";
-      } else {
-        $esta_finalizado_texto = "Completado";
-        $cambiar_estado_texto = "Pendiente";
-      }
-      echo '
-    <tbody scope="col">
-      <tr scope="col">
-        <th scope="col"></th>
-        <td scope="col">' . $row["Tarea"] . '</td>
-        <td scope="col">' . $row["Descripcion"] . '</td>
-        <th scope="col">' . $esta_finalizado_texto . '</th>
-        <th scope="col">' . $row["Fecha_Inicial"] . '</th>
-        <td scope="col">' . $row["Fecha_Final"] . '</td>
-        <th scope="col"><a href="./cambiarEstadoTarea.php?id=' . $row["id"] . '&Esta_Finalizado=' . $row["Esta_Finalizado"] . '"><button>' . $cambiar_estado_texto . '</button></a></th>
-        <th scope="col"><a href="./editar.php?id=' . $row["id"] . '"><button>Editar</button></a></th>
-        <th scope="col"><a href="./borrar.php?id=' . $row["id"] . '"><button>Borrar</button></a></th>
-      </tr>
-    </tbody>';
-    };
-    ?>
-  </table>
-  <!--<td><a href="/Programacion_/11 de julio/borrar.php" style="text-decoration: none; color:white;">Borrar</a></td>-->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="🔍 Buscar tarea...">
+    </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  <!-- Optional JavaScript; choose one of the two! -->
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Tarea</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th>Fecha de inicio</th>
+          <th>Fecha límite</th>
+          <th>Cambiar Estado</th>
+          <th>Editar</th>
+          <th>Borrar</th>
+        </tr>
+      </thead>
+      <tbody id="taskBody">
+        <?php
+          while ($row = mysqli_fetch_array($res)) {
+            $esta = $row["Esta_Finalizado"] ? "Completado" : "Pendiente";
+            $btnStateText = $row["Esta_Finalizado"] ? "completada" : "pendiente";
 
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+            echo '<tr>';
+            echo '<th scope="row">' . $contador++ . '</th>';
+            echo '<td>' . htmlspecialchars($row["Tarea"]) . '</td>';
+            echo '<td>' . htmlspecialchars($row["Descripcion"]) . '</td>';
+            echo '<td>' . $esta . '</td>';
+            echo '<td>' . $row["Fecha_Inicial"] . '</td>';
+            echo '<td>' . $row["Fecha_Final"] . '</td>';
+            echo '<td>
+                    <a href="./cambiarEstadoTarea.php?id=' . $row["id"] . '&Esta_Finalizado=' . $row["Esta_Finalizado"] . '">
+                      <button class="btn-icon btn-complete">
+                        <i class="fa-solid fa-check"></i> ' . $btnStateText . '
+                      </button>
+                    </a>
+                  </td>';
+            echo '<td>
+                    <a href="./editar.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
+                      <i class="fa-solid fa-pen"></i> Editar
+                    </a>
+                  </td>';
+            echo '<td>
+                    <a href="./borrar.php?id=' . $row["id"] . '" class="btn-icon btn-delete" onclick="return confirmarBorrado()">
+          <i class="fa-solid fa-trash"></i> Borrar
+        </a>
+                  </td>';
+            echo '</tr>';
+          }
 
-  <!-- Option 2: Separate Popper and Bootstrap JS -->
-  <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="app.js"></script>
+        ?>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+  function confirmarBorrado() {
+    return confirm('¿Estás seguro de que deseas borrar esta tarea? Esta acción no se puede deshacer.');
+  }
+    // Filtrado en vivo por nombre de tarea
+    const searchInput = document.getElementById('searchInput');
+    const taskBody    = document.getElementById('taskBody');
+    searchInput.addEventListener('input', () => {
+      const filtro = searchInput.value.toLowerCase();
+      Array.from(taskBody.rows).forEach(row => {
+        const texto = row.cells[1].innerText.toLowerCase(); // columna "Tarea"
+        row.style.display = texto.includes(filtro) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

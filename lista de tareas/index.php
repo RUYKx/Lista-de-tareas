@@ -23,11 +23,16 @@ require_once 'components/utils.php';
             <ul class="nav-links">
                 <?php
                 executeIf(isLoggedIn(), function() {
-                    echo '<li><a href="./usuarios/logOut.php">Cerrar Sesion</a></li>';
+                    echo '<li><a href="./usuarios/logOut.php">Cerrar Sesión</a></li>';
+                    echo '<li><a href="./lista.php">Mis Tareas</a></li>';
+                    echo '<li><a href="./agregar.php">Agregar Tarea</a></li>';
+                });
+
+                executeIf(!isLoggedIn(), function() {
+                    echo '<li><a href="./usuarios/iniciarSesion.php">Iniciar Sesión</a></li>';
+                    echo '<li><a href="./usuarios/registrarse.php">Registrarse</a></li>';
                 });
                 ?>
-                <li><a href="#">Próximamente</a></li>
-                <li><a href="#">Próximamente</a></li>
             </ul>
         </nav>
     </header>
@@ -37,13 +42,15 @@ require_once 'components/utils.php';
         <p class="descripcion">Una aplicación simple para gestionar tus tareas diarias. Crea, edita, marca como completada y elimina tus tareas fácilmente.</p>
 
         <div class="botones-principales">
-            <a href="./lista.php"><button class="btn btn-dark">Ir a mis tareas</button></a>
-            <?php
-                executeIf(!isLoggedIn(), function() {
-                    echo '<a href="./usuarios/iniciarSesion.php"><button class="btn btn-light">Iniciar sesión</button></a>';
-                });
-            ?>
-        </div>
+    <?php
+        executeIf(isLoggedIn(), function() {
+            echo '
+                <a href="./lista.php"><button class="btn btn-dark">Ir a mis tareas</button></a>
+                <a href="./agregar.php"><button class="btn btn-dark">Agregar Tarea</button></a>
+            ';
+        });
+    ?>
+</div>
 
         <div class="secciones">
             <div class="seccion">
@@ -58,15 +65,6 @@ require_once 'components/utils.php';
                 <h3>Edita y elimina</h3>
                 <p>Modifica tus tareas o elimínalas cuando ya no las necesites.</p>
             </div>
-        </div>
-
-        <div class="extra-buttons">
-            <a href="./agregar.php"><button class="btn btn-extra">Agregar Tarea</button></a>
-            <?php
-                executeIf(!isLoggedIn(), function() {
-                    echo '<a href="./usuarios/registrarse.php"><button class="btn btn-extra">Registrarse</button></a>';
-                });
-            ?>
         </div>
     </main>
 </body>
