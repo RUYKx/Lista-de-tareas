@@ -14,14 +14,19 @@
 
     <link rel="stylesheet" href="../css/modal.css">
     <script type="module">
+        // Importa las funciones necesarias para crear el modal de error
         import { createErrorModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from '../js/modals.js';
 
+        // Guarda el mensaje de error y el titulo en variables y 
+        // si los sessions no estan definidos deja las variables vacias
         const errorTitle = '<?php echo $_SESSION['error_title'] ?? ''; ?>';
         const errorMessage = '<?php echo $_SESSION['error_message'] ?? ''; ?>';
+
+        // Elimina las variables de sesion relacionadas al error para que no se muestren de nuevo
         <?php unsetSessions(['error_title', 'error_message']); ?>
 
-        console.log(errorTitle, errorMessage);
-        
+        // Ejecuta la funcion createErrorModal si el mensaje de error y el titulo no son vacios y
+        // si estan definidos
         executeIf( 
             isDefined([errorTitle, errorMessage]) && 
             !areIndexesEmpty([errorTitle, errorMessage]),() =>
