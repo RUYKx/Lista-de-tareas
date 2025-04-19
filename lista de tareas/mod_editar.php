@@ -1,6 +1,6 @@
 <?php
-    include "components/utils.php";
-    include "components/db_queries.php";
+    require_once "components/utils.php";
+    require_once "components/db_queries.php";
 
     updateTarea($_POST['id'], $_POST['Tarea'], $_POST['Descripcion'], $_POST['Esta_Finalizado'], $_POST['Fecha_Inicial'], $_POST['Fecha_Final']);
 

@@ -1,5 +1,7 @@
 <?php
-require "../conex.php";
+require_once __DIR__ . "/../conex.php";
+require_once __DIR__ . "/utils.php";
+
 
 // Funcion que devuelve una tarea de la base de datos
 function getTarea($id)
@@ -41,30 +43,7 @@ function deleteTarea($id)
     mysqli_query($GLOBALS['connection'], $query);
 }
 
-// Funcion que registra un usuario en la base de datos
-function insertUsuario($usuario, $password, $email)
+function isQueryEmpty($queryResult)
 {
-    $query = "INSERT INTO `usuarios` (`Usuario`, `Password`, `Email`) VALUES ('" . $usuario . "', '" . $password . "', '" . $email . "');";
-    mysqli_query($GLOBALS['connection'], $query);
-}
-
-function logIn($usuario, $password)
-{
-    if(isset($usuario) && isset($password)){
-        $query = "SELECT * FROM `usuarios` WHERE `Usuario` = '" . $usuario . "' AND `Password` = '" . $password . "'";
-        if(!empty(mysqli_query($GLOBALS['connection'], $query)))
-        {
-            session_start();
-            $_SESSION['LoggedIn'] = true;
-            $_SESSION['Usuario'] = $usuario; 
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
+    return mysqli_num_rows($queryResult) == 0;
 }

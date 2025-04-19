@@ -1,6 +1,6 @@
 <?php
-include "../components/db_queries.php";
-include "../components/utils.php";
+require_once "../components/users.php";
+require_once "../components/utils.php";
 
 // Ingresa un nuevo usuario a la base de datos
 insertUsuario($_POST['Usuario'], $_POST['Password'], $_POST['Email']);

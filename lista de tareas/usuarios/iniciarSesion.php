@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+
+    <link rel="stylesheet" href="modal.css">
+
     <style>
         .login-container {
     max-width: 400px;
@@ -136,6 +139,38 @@
             </div>
         </div>
     </div>
+    <?php
+
+    require_once '../components/users.php';
+
+    if (isset($_SESSION['error_title'], $_SESSION['error_message'])) {
+        $errorTitle = $_SESSION['error_title'];
+        $errorMessage = $_SESSION['error_message'];
+
+        // Clear the session variables after displaying the modal
+        unset($_SESSION['error_title']);
+        unset($_SESSION['error_message']);
+    ?>
+        <div id="errorModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal()">&times;</span>
+                <h2><?php echo $errorTitle; ?></h2>
+                <p><?php echo $errorMessage; ?></p>
+                <button onclick="window.location.href='iniciarSesion.php'">Ok</button>
+            </div>
+        </div>
+    <?php } ?>
+
+    <script>
+        function closeModal() {
+            document.getElementById('errorModal').style.display = 'none';
+        }
+        window.onload = function() {
+            <?php if (isset($errorTitle, $errorMessage)) { ?>
+                document.getElementById('errorModal').style.display = 'block';
+            <?php } ?>
+        };
+    </script>
 </body>
 
 </html>

@@ -25,7 +25,7 @@
       </tr>
     </thead>
     <?php
-    include 'conex.php';
+    require_once 'conex.php';
     $query = "SELECT * FROM `tareas` WHERE Esta_Borrado = 0";
     $res = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_array($res)) {

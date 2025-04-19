@@ -1,3 +1,10 @@
+<?php
+
+require_once 'components/users.php';
+require_once 'components/utils.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,6 +21,11 @@
         <h1 class="logo">TaskManager</h1>
         <nav>
             <ul class="nav-links">
+                <?php
+                executeIf(isLoggedIn(), function() {
+                    echo '<li><a href="./usuarios/logOut.php">Cerrar Sesion</a></li>';
+                });
+                ?>
                 <li><a href="#">Próximamente</a></li>
                 <li><a href="#">Próximamente</a></li>
             </ul>
@@ -46,7 +58,11 @@
 
         <div class="extra-buttons">
             <a href="./agregar.php"><button class="btn btn-extra">Agregar Tarea</button></a>
-            <a href="./usuarios/registrarse.php"><button class="btn btn-extra">Registrarse</button></a>
+            <?php
+                executeIf(!isLoggedIn(), function() {
+                    echo '<a href="./usuarios/registrarse.php"><button class="btn btn-extra">Registrarse</button></a>';
+                });
+            ?>
         </div>
     </main>
 </body>
