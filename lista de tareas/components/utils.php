@@ -19,8 +19,7 @@ function redirectIfError($url, $title, $message, $isOk)
     }
 }
 
-// Funcion que si se cumple la condicion ejecuta el callback que es una funcion anonima que se ejecuta si la condicion es verdadera
-function executeIf($condition, $callback)
+// Funcion que si se cumple la condicion ejecuta el callback que es una funcion anonima mayormente
 {
     if($condition)
     {
