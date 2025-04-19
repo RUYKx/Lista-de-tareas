@@ -27,17 +27,12 @@
 
         // Ejecuta la funcion createErrorModal si el mensaje de error y el titulo no son vacios y
         // si estan definidos
-        executeIf( 
-            isDefined([errorTitle, errorMessage]) && 
-            !areIndexesEmpty([errorTitle, errorMessage]),() =>
-            {
-                createErrorModal(
-                    'errorModal', 
-                    errorTitle, 
-                    errorMessage
-                );
-            }
-        );
+        isDefined([errorTitle, errorMessage]) && !areIndexesEmpty([errorTitle, errorMessage]) ?
+            createErrorModal(
+                'errorModal', 
+                errorTitle, 
+                errorMessage
+            ) : null;
     </script>
     <style>
         .login-container {
