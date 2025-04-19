@@ -105,6 +105,8 @@ $res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 OR
     .btn-complete {
       background: #222;
       color: #fff;
+      width: 100%;
+      text-align: center;
     }
     .btn-complete:hover {
       background: #444;

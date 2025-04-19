@@ -86,7 +86,14 @@
         .btn {
             padding: 12px 24px;
             font-size: 16px;
-            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-volver {
+            padding: 0.55rem 1.1rem;
+            font-size: 16px;
+            border: solid 2px rgb(235, 224, 224);
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -109,10 +116,10 @@
             display: inline-block;
             background-color: #f2f2f2;
             color: #333;
-            padding: 10px 20px;
+            padding: 0.55rem 1.1rem;
             border-radius: 8px;
             text-decoration: none;
-            margin-bottom: 15px;
+            margin-top: 1.6rem;
             transition: background-color 0.3s;
         }
 
@@ -159,7 +166,6 @@
         </form>
 
         <div class="extra-options">
-            <a href="../index.php" class="btn btn-light">← Volver</a>
 
             <div class="google-login">
                 <p>¿Prefieres usar tu cuenta de Google?</p>
@@ -167,6 +173,8 @@
                     Iniciar sesión con Google
                 </a>
             </div>
+
+            <a href="../index.php" class="btn btn-light btn-volver">← Volver</a>
         </div>
     </div>
 </body>
