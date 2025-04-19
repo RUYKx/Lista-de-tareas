@@ -7,4 +7,4 @@ insertTarea($_POST['Tarea'], $_POST['Descripcion'], $_POST['Esta_Finalizado'], $
 
 // Redirige a la pagina de agregar tareas
 redirect("agregar.php");
-//manco guzma
+//manco guzmak
