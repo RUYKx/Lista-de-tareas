@@ -34,13 +34,13 @@ function unsetSessions(array $sessions)
 }
 
 // Funcion que crea un modal de error
-function errorModal($title, $message, $redirectUrl)
+function errorModal($title, $message, $id, $redirectUrl)
 { 
     unsetSessions(['error_title', 'error_message']);
     echo '
-        <div id="errorModal" class="modal">
+        <div id="'.$id.'" class="modal">
             <div class="modal-content">
-                <span class="close-button" onclick="closeModal()">&times;</span>
+                <span class="close-button" onclick="closeModalById('.$id.')">&times;</span>
                 <h2>'.$title.'</h2>
                 <p>'.$message.'</p>
                 <button onclick="window.location.href=\''.$redirectUrl.'\'">Ok</button>

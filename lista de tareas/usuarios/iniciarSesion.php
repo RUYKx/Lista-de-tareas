@@ -12,18 +12,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
 
-    <link rel="stylesheet" href="modal.css">
-    <script type="module" src="modals.js">
+    <link rel="stylesheet" href="../css/modal.css">
+    <script type="module">
+        import { createErrorModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from '../js/modals.js';
 
-        closeModalById("errorModal");
+        const errorTitle = '<?php echo $_SESSION['error_title'] ?? ''; ?>';
+        const errorMessage = '<?php echo $_SESSION['error_message'] ?? ''; ?>';
+        <?php unsetSessions(['error_title', 'error_message']); ?>
 
-        <?php executeIf(isset($_SESSION['error_title'], $_SESSION['error_message']), function()
-        {   ?>
-            window.onload = showModalById("errorModal");<?php
-        })  ?>
-
+        console.log(errorTitle, errorMessage);
+        
+        executeIf( 
+            isDefined([errorTitle, errorMessage]) && 
+            !areIndexesEmpty([errorTitle, errorMessage]),() =>
+            {
+                createErrorModal(
+                    'errorModal', 
+                    errorTitle, 
+                    errorMessage
+                );
+            }
+        );
     </script>
-    
     <style>
         .login-container {
             max-width: 400px;
@@ -154,13 +164,6 @@
             </div>
         </div>
     </div>
-    <?php
-
-    executeIf(isset($_SESSION['error_title'], $_SESSION['error_message']), function () {
-        errorModal($_SESSION['error_title'], $_SESSION['error_message'], "./iniciarSesion.php");
-    });
-
-    ?>
 </body>
 
 </html>
