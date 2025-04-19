@@ -9,16 +9,15 @@ function redirect($url)
 }
 
 // Funcion que guarda un mensaje y titulo de error y redirige a una URL especificada 
-function redirectIfError($url, $title, $message, $isOk)
+function redirectIfError($url, $title, $message)
 {
-    if(!$isOk)
-    {
-        session_start();
-        $_SESSION['error_title'] = $title;
-        $_SESSION['error_message'] = $message;
+    session_start();
+    $_SESSION['error_title'] = $title;
+    $_SESSION['error_message'] = $message;
 
-        redirect($url);
-    }
+    redirect($url);
+
+    return true;
 }
 
 // Funcion que elimina una variable de sesion si existe

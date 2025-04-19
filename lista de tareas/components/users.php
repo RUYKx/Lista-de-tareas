@@ -6,6 +6,39 @@ require_once __DIR__ . '/db_queries.php';
 // Inicia la sesion
 session_start();
 
+// Obtiene el usuario con el nombre de usuario especificado
+function getUsuario($usuario)
+{
+    $query = "SELECT * FROM `usuarios` WHERE `Usuario` = '" . $usuario . "';";
+    $res = mysqli_query($GLOBALS['connection'], $query);
+    
+    if(!isQueryEmpty($res))
+    {
+        return mysqli_fetch_assoc($res);
+    }
+    else
+    {
+        return false;
+    }
+
+}
+
+// Verifica si el nombre de usuario ya existe en la base de datos
+function isUsernameAvailable($usuario)
+{
+    $query = "SELECT * FROM `usuarios` WHERE `Usuario` = '" . $usuario . "';";
+    $res = mysqli_query($GLOBALS['connection'], $query);
+    
+    if(!isQueryEmpty($res))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
 // Funcion que registra un usuario en la base de datos
 function insertUsuario($usuario, $password, $email)
 {
@@ -49,6 +82,7 @@ function logIn($usuario, $password)
     else
     {
         redirect("../index.php");
+        return true;
     }
     
 }
