@@ -1,5 +1,5 @@
 <?php
-require "conex.php";
+require "../conex.php";
 
 // Funcion que devuelve una tarea de la base de datos
 function getTarea($id)
