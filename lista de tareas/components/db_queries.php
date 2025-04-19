@@ -58,8 +58,13 @@ function logIn($usuario, $password)
             $_SESSION['LoggedIn'] = true;
             $_SESSION['Usuario'] = $usuario; 
         }
+        else
+        {
+            return false;
+        }
     }
-    else{
+    else
+    {
         return false;
     }
 }
