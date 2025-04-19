@@ -1,3 +1,8 @@
+<?php
+    require_once '../components/users.php';
+    require_once '../components/utils.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,109 +13,119 @@
     <title>Iniciar Sesión</title>
 
     <link rel="stylesheet" href="modal.css">
+    <script type="module" src="modals.js">
 
+        closeModalById("errorModal");
+
+        <?php executeIf(isset($_SESSION['error_title'], $_SESSION['error_message']), function()
+        {   ?>
+            window.onload = showModalById("errorModal");<?php
+        })  ?>
+
+    </script>
+    
     <style>
         .login-container {
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    text-align: center;
-}
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
 
-.login-container h1 {
-    margin-bottom: 30px;
-    font-size: 28px;
-}
+        .login-container h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-.login-form label {
-    font-weight: bold;
-    text-align: left;
-    margin-bottom: 5px;
-}
+        .login-form label {
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 5px;
+        }
 
-.login-form input[type="text"],
-.login-form input[type="password"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: 0.3s ease;
-}
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s ease;
+        }
 
-.login-form input[type="text"]:focus,
-.login-form input[type="password"]:focus {
-    border-color: #333;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
+        .login-form input[type="text"]:focus,
+        .login-form input[type="password"]:focus {
+            border-color: #333;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
 
-.btn {
-    padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-.btn-dark {
-    background-color: #222;
-    color: white;
-}
+        .btn-dark {
+            background-color: #222;
+            color: white;
+        }
 
-.btn-dark:hover {
-    background-color: #444;
-}
-.extra-options {
-    margin-top: 25px;
-    text-align: center;
-}
+        .btn-dark:hover {
+            background-color: #444;
+        }
+        .extra-options {
+            margin-top: 25px;
+            text-align: center;
+        }
 
-.btn-light {
-    display: inline-block;
-    background-color: #f2f2f2;
-    color: #333;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    margin-bottom: 15px;
-    transition: background-color 0.3s;
-}
+        .btn-light {
+            display: inline-block;
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: background-color 0.3s;
+        }
 
-.btn-light:hover {
-    background-color: #ddd;
-}
+        .btn-light:hover {
+            background-color: #ddd;
+        }
 
-.google-login p {
-    margin: 10px 0;
-}
+        .google-login p {
+            margin: 10px 0;
+        }
 
-.btn-google {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 10px 20px;
-    border-radius: 8px;
-    color: #444;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
+        .btn-google {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #444;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
 
-.btn-google:hover {
-    background-color: #f5f5f5;
-}
+        .btn-google:hover {
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
 
@@ -141,36 +156,11 @@
     </div>
     <?php
 
-    require_once '../components/users.php';
+    executeIf(isset($_SESSION['error_title'], $_SESSION['error_message']), function () {
+        errorModal($_SESSION['error_title'], $_SESSION['error_message'], "./iniciarSesion.php");
+    });
 
-    if (isset($_SESSION['error_title'], $_SESSION['error_message'])) {
-        $errorTitle = $_SESSION['error_title'];
-        $errorMessage = $_SESSION['error_message'];
-
-        // Clear the session variables after displaying the modal
-        unset($_SESSION['error_title']);
-        unset($_SESSION['error_message']);
     ?>
-        <div id="errorModal" class="modal">
-            <div class="modal-content">
-                <span class="close-button" onclick="closeModal()">&times;</span>
-                <h2><?php echo $errorTitle; ?></h2>
-                <p><?php echo $errorMessage; ?></p>
-                <button onclick="window.location.href='iniciarSesion.php'">Ok</button>
-            </div>
-        </div>
-    <?php } ?>
-
-    <script>
-        function closeModal() {
-            document.getElementById('errorModal').style.display = 'none';
-        }
-        window.onload = function() {
-            <?php if (isset($errorTitle, $errorMessage)) { ?>
-                document.getElementById('errorModal').style.display = 'block';
-            <?php } ?>
-        };
-    </script>
 </body>
 
 </html>

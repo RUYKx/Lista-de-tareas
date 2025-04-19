@@ -48,3 +48,15 @@ function isQueryEmpty($queryResult)
 {
     return mysqli_num_rows($queryResult) == 0;
 }
+
+function isQuerySuccessful($queryResult)
+{
+    if($queryResult)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

@@ -38,7 +38,11 @@ require_once 'components/utils.php';
 
         <div class="botones-principales">
             <a href="./lista.php"><button class="btn btn-dark">Ir a mis tareas</button></a>
-            <a href="./usuarios/iniciarSesion.php"><button class="btn btn-light">Iniciar sesión</button></a>
+            <?php
+                executeIf(!isLoggedIn(), function() {
+                    echo '<a href="./usuarios/iniciarSesion.php"><button class="btn btn-light">Iniciar sesión</button></a>';
+                });
+            ?>
         </div>
 
         <div class="secciones">

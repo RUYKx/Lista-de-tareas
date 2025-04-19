@@ -10,7 +10,10 @@ session_start();
 function insertUsuario($usuario, $password, $email)
 {
     $query = "INSERT INTO `usuarios` (`Usuario`, `Password`, `Email`) VALUES ('" . $usuario . "', '" . $password . "', '" . $email . "');";
-    mysqli_query($GLOBALS['connection'], $query);
+    
+    $res = mysqli_query($GLOBALS['connection'], $query);
+
+    return isQuerySuccessful($res);
 }
 
 // Funcion que verifica si el usuario esta logueado

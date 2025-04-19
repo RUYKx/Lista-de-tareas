@@ -1,4 +1,6 @@
 <?php
+require_once 'users.php';
+
 // Funcion que redirecciona a una URL especificada
 function redirect($url)
 {
@@ -19,6 +21,34 @@ function redirectIfError($url, $title, $message, $isOk)
     }
 }
 
+// Funcion que elimina una variable de sesion si existe
+function unsetSessions(array $sessions)
+{
+    foreach($sessions as $session)
+    {
+        if(isset($_SESSION[$session]))
+        {
+            unset($_SESSION[$session]);
+        }
+    }
+}
+
+// Funcion que crea un modal de error
+function errorModal($title, $message, $redirectUrl)
+{ 
+    unsetSessions(['error_title', 'error_message']);
+    echo '
+        <div id="errorModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal()">&times;</span>
+                <h2>'.$title.'</h2>
+                <p>'.$message.'</p>
+                <button onclick="window.location.href=\''.$redirectUrl.'\'">Ok</button>
+            </div>
+        </div>
+    ';
+}
+
 // Funcion que si se cumple la condicion ejecuta el callback que es una funcion anonima mayormente
 function executeIf($condition, $callback)
 {
@@ -27,3 +57,5 @@ function executeIf($condition, $callback)
         $callback();
     }
 }
+
+?>
