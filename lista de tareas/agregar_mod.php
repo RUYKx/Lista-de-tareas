@@ -6,5 +6,5 @@ require_once "components/utils.php";
 insertTarea($_POST['Tarea'], $_POST['Descripcion'], $_POST['Esta_Finalizado'], $_POST['Fecha_Inicial'], $_POST['Fecha_Final']);
 
 // Redirige a la pagina de agregar tareas
-redirect("agregar.php");
+redirect("lista.php");
 //manco guzmak
