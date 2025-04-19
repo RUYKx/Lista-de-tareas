@@ -43,6 +43,7 @@ function deleteTarea($id)
     mysqli_query($GLOBALS['connection'], $query);
 }
 
+// Funcion que verifica si una consulta no encontro resultados
 function isQueryEmpty($queryResult)
 {
     return mysqli_num_rows($queryResult) == 0;
