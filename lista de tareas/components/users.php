@@ -19,14 +19,7 @@ function insertUsuario($usuario, $password, $email)
 // Funcion que verifica si el usuario esta logueado
 function isLoggedIn()
 {
-    if(isset($_SESSION['LoggedIn']))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return isset($_SESSION['LoggedIn']) ? true : false;
 }
 
 // Funcion que loguea un usuario en la pagina web

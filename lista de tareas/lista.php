@@ -3,10 +3,7 @@
 require_once 'components/users.php';
 require_once 'conex.php';
 
-if (!isLoggedIn()) {
-    header('Location: usuarios/iniciarSesion.php');
-    exit;
-}
+!isLoggedIn() ? redirect('usuarios/iniciarSesion.php') : null;
 
 $contador = 1;
 $res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 ORDER BY Fecha_Final ASC");

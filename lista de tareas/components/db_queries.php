@@ -49,14 +49,8 @@ function isQueryEmpty($queryResult)
     return mysqli_num_rows($queryResult) == 0;
 }
 
+// Funcion que verifica si una consulta fue exitosa
 function isQuerySuccessful($queryResult)
 {
-    if($queryResult)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return $queryResult ? true : false;
 }
