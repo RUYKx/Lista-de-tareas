@@ -12,7 +12,8 @@
     <title>Agregar Tarea</title>
 
     <!-- Tus estilos de modal si los estás usando -->
-    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Estilos “login-container” reutilizados -->
     <style>
@@ -130,7 +131,7 @@
             <input type="submit" value="Crear Tarea" class="btn btn-dark">
         </form>
 
-        <a href="../index.php" class="btn btn-light">← Volver</a>
+        <a href="index.php" class="btn btn-light">← Volver</a>
     </div>
 </body>
 

@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
     background-color: #f7f7f7;
     color: #333;
     text-align: center;
@@ -84,6 +84,7 @@ body {
 
 .seccion {
     background-color: #fff;
+    cursor: default;
     padding: 20px;
     width: 250px;
     border-radius: 10px;

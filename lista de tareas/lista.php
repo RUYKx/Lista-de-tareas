@@ -17,6 +17,7 @@ $res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 OR
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/modal.css">
   <title>Lista de Tareas</title>
 
   <!-- FontAwesome para iconos -->

@@ -1,3 +1,6 @@
+*{
+    font-family: 'Roboto', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+}
 .modal {
     display: none; /* Hidden by default */
     align-items: center;
@@ -66,7 +69,6 @@
     margin: 0;
     border-radius: 8px;
     font-size: 1rem;
-    font-family: 'Roboto', 'Arial', sans-serif;
     font-weight: normal;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
