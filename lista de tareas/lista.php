@@ -67,7 +67,7 @@ if (isset($_GET['id_lista'])) {
     }
     .search-bar input {
       width: 100%;
-      padding: 12px 16px;
+      padding: 1% 0 1% 2%;
       font-size: 1rem;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -77,7 +77,33 @@ if (isset($_GET['id_lista'])) {
     .search-bar input:focus {
       border-color: #aaa;
     }
+    .search-wrapper {
+      position: relative; /* Create a positioning context for the icon */
+      width: 100%; /* Ensure the wrapper takes the full width */
+    }
 
+    .search-wrapper .search-icon {
+      position: absolute; /* Position the icon inside the input */
+      top: 50%; /* Center vertically */
+      left: 1%; /* Add some space from the left */
+      transform: translateY(-52%); /* Adjust for vertical centering */
+      color: #aaa; /* Optional: Icon color */
+      pointer-events: none; /* Prevent the icon from blocking input clicks */
+    }
+
+    .search-wrapper input {
+      width: 96.5%; /* Full width for the input */
+      padding: 1% 0 1% 3.5%; /* Add left padding to make space for the icon */
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .search-wrapper input:focus {
+      border-color: #aaa; /* Highlight border on focus */
+    }
     /* Tabla custom */
     .table-custom {
       width: 100%;
@@ -181,7 +207,10 @@ if (isset($_GET['id_lista'])) {
     <i class="fa-solid fa-plus"></i>
 </a>
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="🔍 Buscar tarea...">
+      <div class="search-wrapper">
+        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input type="text" id="searchInput" placeholder="Buscar tarea...">
+      </div>
     </div>
 
     <table class="table-custom">
