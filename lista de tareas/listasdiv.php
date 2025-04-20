@@ -5,8 +5,12 @@ require_once 'components/conexion.php';
 require_once 'components/utils.php';
 require_once 'components/db_queries.php';
 
-$usuarioAutenticado = false; // Inicializa la variable como falsa por defecto
 
+!isLoggedIn() ? redirect('index.php') : true;
+
+/* ------------------------------------------------------------------------------
+ * Todo esto esta mal, lo de arriba es lo que deberia estar
+ * -------------------------------------------------------------------------- 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = $_POST['Usuario'];
     $password = $_POST['Password'];
@@ -48,10 +52,10 @@ $usuario = $_SESSION['usuario'];
 if (!$conn) {
     die("Database connection failed: " . $conn->connect_error);
 }
-
+*/
 $sql = "SELECT * FROM listas WHERE usuario = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $usuario);
+$stmt->bind_param("s", $_SESSION['Usuario']);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
@@ -121,15 +125,17 @@ $result = $stmt->get_result();
 <body>
     <h1>Tus Repertorios</h1>
     <div class="listas-container">
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="lista-card">
-                <h3><?= htmlspecialchars($row['nombre']) ?></h3>
-                <p><?= htmlspecialchars($row['descripcion']) ?></p>
-                <a href="ver_tareas.php?id_lista=<?= $row['id'] ?>">
+        <?php 
+            while ($row = $result->fetch_assoc()){
+                echo '<div class="lista-card">
+                    <h3>'.$row['nombre'].'</h3>
+                    <p>'.$row['descripcion'].'</p>
+                    <a href="ver_tareas.php?id_lista='.$row['id'].'">
                     <button>Ver tareas</button>
-                </a>
-            </div>
-        <?php endwhile; ?>
+                    </a>
+                ';
+            }
+        ?>
     </div>
 </body>
 </html>
