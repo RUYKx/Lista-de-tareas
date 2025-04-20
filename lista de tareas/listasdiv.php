@@ -12,6 +12,7 @@ $stmt = $connection->prepare($sql);
 $stmt->bind_param("s", $_SESSION['Usuario']);
 $stmt->execute();
 $result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -52,32 +53,25 @@ $result = $stmt->get_result();
         }
 
         .btn-agregar {
-        background: #111;
-        color: #fff;
-        border: none;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        font-size: 24px;
-        cursor: pointer;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: background 0.3s ease;
-    }
+            background: #111;
+            color: #fff;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: background 0.3s ease;
+        }
 
-    .btn-agregar:hover {
-        background: #333;
-    }
-
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 24px;
-    }
+        .btn-agregar:hover {
+            background: #333;
+        }
 
         .listas-container {
             display: flex;
@@ -93,6 +87,7 @@ $result = $stmt->get_result();
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             width: 280px;
             text-align: center;
+            position: relative;
             transition: transform 0.2s ease;
         }
 
@@ -131,6 +126,28 @@ $result = $stmt->get_result();
         .btn-ver-tareas:hover {
             background: #444;
         }
+
+        .btn-delete {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-delete:hover {
+            background-color: #cc0000;
+        }
+
+        .btn-delete i {
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -138,20 +155,24 @@ $result = $stmt->get_result();
         <div class="header">
             <h1>Tus Repertorios</h1>
             <a href="crear_lista.php" class="btn-agregar" title="Agregar Repertorio">
-    <i class="fa-solid fa-plus"></i>
-</a>
-
+                <i class="fa-solid fa-plus"></i>
+            </a>
         </div>
 
         <div class="listas-container">
             <?php 
-                while ($row = $result->fetch_assoc()){
+                while ($row = $result->fetch_assoc()) {
                     echo '<div class="lista-card">
-                            <h3>'.htmlspecialchars($row['nombre']).'</h3>
-                            <p>'.htmlspecialchars($row['descripcion']).'</p>
-                            <a href="lista.php?id_lista='.$row['id'].'" class="btn-ver-tareas">
+                            <h3>' . htmlspecialchars($row['nombre']) . '</h3>
+                            <p>' . htmlspecialchars($row['descripcion']) . '</p>
+                            <a href="lista.php?id_lista=' . $row['id'] . '" class="btn-ver-tareas">
                                 <i class="fa-solid fa-list-check"></i> Ver tareas
                             </a>
+                            <a href="borrar_lista.php?id=' . htmlspecialchars($row['id']) . '" class="btn-delete" title="Eliminar lista" onclick="return confirm(\'¿Estás seguro que querés eliminar esta lista?\');">
+    <i class="fa-solid fa-trash"></i>
+</a>
+
+
                           </div>';
                 }
             ?>

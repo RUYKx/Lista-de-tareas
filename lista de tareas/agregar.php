@@ -139,31 +139,6 @@
         <a href="index.php" class="btn-light btn-volver">← Volver</a>
     </div>
 
-    <script type="module">
-        import { createModal, showModal, executeIf } from './js/modals.js';
-
-        const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
-        const title = '<?php echo $_SESSION['modal_title'] ?? ''; ?>';
-        const message = '<?php echo $_SESSION['modal_message'] ?? ''; ?>';
-        const buttonText = '<?php echo $_SESSION['modal_button_text'] ?? ''; ?>';
-
-        <?php unsetSessions(['modal_id','modal_title', 'modal_message', 'modal_button_text']); ?>
-
-        executeIf(showModal(id, title, message, buttonText), 
-            document.querySelector('.login-form').addEventListener('submit', function (event) {
-                const fechaInicial = document.getElementById('Fecha_Inicial').value;
-                const fechaFinal = document.getElementById('Fecha_Final').value;
-                if (new Date(fechaInicial) >= new Date(fechaFinal)) {
-                    event.preventDefault();
-                    showModal(
-                        "error",
-                        "Error de fecha",
-                        "La fecha de inicio debe ser anterior a la fecha límite.",
-                        "Volver a intentar"
-                    );
-                }
-            })
-        );
-    </script>
+    
 </body>
 </html>

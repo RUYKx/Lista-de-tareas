@@ -1,0 +1,17 @@
+<?php
+require_once 'components/utils.php';
+require_once 'components/db_queries.php';
+
+$id_lista = $_GET['id'] ?? null;
+
+if ($id_lista) {
+    // Borrar todas las tareas de esa lista
+    eliminarTareasDeLista($id_lista);
+
+    // Borrar la lista en sí
+    eliminarLista($id_lista);
+}
+
+// Redirige a listasdiv.php después de borrar
+redirect("listasdiv.php");
+?>

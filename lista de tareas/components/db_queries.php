@@ -55,3 +55,20 @@ function isQuerySuccessful($queryResult)
 {
     return $queryResult ? true : false;
 }
+
+
+function eliminarTareasDeLista($id_lista) {
+    global $connection;
+    $stmt = $connection->prepare("DELETE FROM tareas WHERE id_lista = ?");
+    $stmt->bind_param("i", $id_lista);
+    $stmt->execute();
+    $stmt->close();
+}
+
+function eliminarLista($id_lista) {
+    global $connection;
+    $stmt = $connection->prepare("DELETE FROM listas WHERE id = ?");
+    $stmt->bind_param("i", $id_lista);
+    $stmt->execute();
+    $stmt->close();
+}
