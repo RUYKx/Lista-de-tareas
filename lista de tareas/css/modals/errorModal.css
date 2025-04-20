@@ -1,0 +1,10 @@
+.modal span {
+    background-color: #dc3545; /* Red background */
+    color: #fff; /* White text */
+}
+.modal span:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+.modal span:active {
+    background-color: #bd2130; /* Even darker red on click */
+}

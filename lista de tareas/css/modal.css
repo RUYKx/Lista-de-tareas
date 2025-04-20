@@ -61,8 +61,6 @@
     padding: 5% 0;
 }
 .close-button {
-    background-color: #dc3545; /* Red background */
-    color: #fff; /* White text */
     border: none;
     width: 70%;
     padding: 0.8rem 0;
@@ -76,12 +74,10 @@
 }
 
 .close-button:hover {
-    background-color: #c82333; /* Darker red on hover */
     transform: scale(1.05); /* Slight zoom effect */
 }
 
 .close-button:active {
-    background-color: #bd2130; /* Even darker red on click */
     transform: scale(1); /* Reset zoom effect */
 }
 
