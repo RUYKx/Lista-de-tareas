@@ -5,54 +5,8 @@ require_once 'components/conexion.php';
 require_once 'components/utils.php';
 require_once 'components/db_queries.php';
 
-
 !isLoggedIn() ? redirect('index.php') : true;
 
-/* ------------------------------------------------------------------------------
- * Todo esto esta mal, lo de arriba es lo que deberia estar
- * -------------------------------------------------------------------------- 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = $_POST['Usuario'];
-    $password = $_POST['Password'];
-
-    function verificarCredenciales($usuario, $password) {
-        global $conn; // Usa la conexión global a la base de datos
-        $sql = "SELECT * FROM usuarios WHERE usuario = ? AND password = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $usuario, $password);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->num_rows > 0; // Devuelve true si las credenciales son válidas
-    }
-
-    $usuarioAutenticado = verificarCredenciales($usuario, $password); // Verifica las credenciales
-
-    if ($usuarioAutenticado) {
-        $_SESSION['usuario'] = $usuario; // Guarda el usuario en la sesión
-        header("Location: ../listasdiv.php"); // Redirige a la página de listas
-        exit;
-    } else {
-        echo "Credenciales incorrectas.";
-    }
-}
-
-
-
-
-if ($usuarioAutenticado) { // Verifica si el usuario se autenticó correctamente
-    $_SESSION['usuario'] = $usuario; // Guarda el usuario en la sesión
-    header("Location: ../listasdiv.php"); // Redirige a la página de listas
-    exit;
-} else {
-    echo "Credenciales incorrectas.";
-}
-
-$usuario = $_SESSION['usuario'];
-
-if (!$conn) {
-    die("Database connection failed: " . $conn->connect_error);
-}
-*/
 $sql = "SELECT * FROM listas WHERE usuario = ?";
 $stmt = $connection->prepare($sql);
 $stmt->bind_param("s", $_SESSION['Usuario']);
@@ -66,6 +20,8 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <title>Mis Listas</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -74,17 +30,60 @@ $result = $stmt->get_result();
             padding: 40px;
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 32px;
+        .listas-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 24px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #111;
+        }
+
+        .btn-agregar {
+        background: #111;
+        color: #fff;
+        border: none;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: background 0.3s ease;
+    }
+
+    .btn-agregar:hover {
+        background: #333;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
 
         .listas-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 24px;
+            justify-content: center;
         }
 
         .lista-card {
@@ -94,48 +93,69 @@ $result = $stmt->get_result();
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
             width: 280px;
             text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .lista-card:hover {
+            transform: translateY(-5px);
         }
 
         .lista-card h3 {
-            margin: 0 0 8px;
+            margin: 0 0 10px;
             color: #222;
+            font-size: 1.2rem;
         }
 
         .lista-card p {
             color: #666;
             font-size: 14px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            min-height: 40px;
         }
 
-        .lista-card button {
+        .btn-ver-tareas {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background: #111;
             color: #fff;
             border: none;
             padding: 10px 16px;
             border-radius: 8px;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: background .3s ease;
+            text-decoration: none;
         }
 
-        .lista-card button:hover {
+        .btn-ver-tareas:hover {
             background: #444;
         }
     </style>
 </head>
 <body>
-    <h1>Tus Repertorios</h1>
-    <div class="listas-container">
-        <?php 
-            while ($row = $result->fetch_assoc()){
-                echo '<div class="lista-card">
-                    <h3>'.$row['nombre'].'</h3>
-                    <p>'.$row['descripcion'].'</p>
-                    <a href="ver_tareas.php?id_lista='.$row['id'].'">
-                    <button>Ver tareas</button>
-                    </a>
-                ';
-            }
-        ?>
+    <div class="listas-wrapper">
+        <div class="header">
+            <h1>Tus Repertorios</h1>
+            <a href="crear_lista.php" class="btn-agregar" title="Agregar Repertorio">
+    <i class="fa-solid fa-plus"></i>
+</a>
+
+        </div>
+
+        <div class="listas-container">
+            <?php 
+                while ($row = $result->fetch_assoc()){
+                    echo '<div class="lista-card">
+                            <h3>'.htmlspecialchars($row['nombre']).'</h3>
+                            <p>'.htmlspecialchars($row['descripcion']).'</p>
+                            <a href="lista.php?id_lista='.$row['id'].'" class="btn-ver-tareas">
+                                <i class="fa-solid fa-list-check"></i> Ver tareas
+                            </a>
+                          </div>';
+                }
+            ?>
+        </div>
     </div>
 </body>
 </html>

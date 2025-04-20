@@ -1,12 +1,34 @@
 <?php
-// lista.php
 require_once 'components/users.php';
 require_once 'conex.php';
 
 !isLoggedIn() ? redirect('index.php') : null;
 
 $contador = 1;
-$res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 ORDER BY Fecha_Final ASC");
+
+// Verifica si se proporcionó un ID de lista
+if (isset($_GET['id_lista'])) {
+    $id_lista = $_GET['id_lista'];
+
+    // Filtrar tareas por lista específica
+    $stmt = $connection->prepare("SELECT * FROM tareas WHERE Esta_Borrado = 0 AND id_lista = ? ORDER BY Fecha_Final ASC");
+    $stmt->bind_param("i", $id_lista);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    // (Opcional) Obtener el nombre de la lista
+    $stmt_nombre = $connection->prepare("SELECT nombre FROM listas WHERE id = ?");
+    $stmt_nombre->bind_param("i", $id_lista);
+    $stmt_nombre->execute();
+    $resultado_nombre = $stmt_nombre->get_result();
+    $nombre_lista = $resultado_nombre->fetch_assoc()['nombre'] ?? 'Sin nombre';
+
+    $stmt_nombre->close();
+} else {
+    // Si no hay ID de lista, redirigir o mostrar mensaje
+    echo "<script>alert('No se ha especificado ninguna lista.'); window.location.href='home.php';</script>";
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
