@@ -1,7 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Inicia la sesión si no está activa
-}
 
 require_once 'components/users.php';
 require_once 'components/conexion.php';

@@ -55,7 +55,7 @@ function insertUsuario($usuario, $password, $email)
 // Funcion que verifica si el usuario esta logueado
 function isLoggedIn()
 {
-    return isset($_SESSION['LoggedIn']) ? true : false;
+    return isset($_SESSION['logged_in']) ? true : false;
 }
 
 // Funcion que loguea un usuario en la pagina web
@@ -68,7 +68,7 @@ function logIn($usuario, $password)
             $res = mysqli_query($GLOBALS['connection'], $query);
             if(!isQueryEmpty($res))
             {
-                $_SESSION['LoggedIn'] = true;
+                $_SESSION['logged_in'] = true;
                 $_SESSION['Usuario'] = $usuario; 
                 return true;
             }
