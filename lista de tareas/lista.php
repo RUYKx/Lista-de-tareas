@@ -45,7 +45,7 @@ Usuario = '".$_SESSION['Usuario']."' ORDER BY Fecha_Final ASC");
     }
     .search-bar input {
       width: 100%;
-      padding: 12px 16px;
+      padding: 1% 0 1% 2%;
       font-size: 1rem;
       border: 1px solid #ddd;
       border-radius: 8px;
@@ -55,7 +55,33 @@ Usuario = '".$_SESSION['Usuario']."' ORDER BY Fecha_Final ASC");
     .search-bar input:focus {
       border-color: #aaa;
     }
+    .search-wrapper {
+      position: relative; /* Create a positioning context for the icon */
+      width: 100%; /* Ensure the wrapper takes the full width */
+    }
 
+    .search-wrapper .search-icon {
+      position: absolute; /* Position the icon inside the input */
+      top: 50%; /* Center vertically */
+      left: 10px; /* Add some space from the left */
+      transform: translateY(-50%); /* Adjust for vertical centering */
+      color: #aaa; /* Optional: Icon color */
+      pointer-events: none; /* Prevent the icon from blocking input clicks */
+    }
+
+    .search-wrapper input {
+      width: 100%; /* Full width for the input */
+      padding: 10px 10px 10px 36px; /* Add left padding to make space for the icon */
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .search-wrapper input:focus {
+      border-color: #aaa; /* Highlight border on focus */
+    }
     /* Tabla custom */
     .table-custom {
       width: 100%;
@@ -130,7 +156,10 @@ Usuario = '".$_SESSION['Usuario']."' ORDER BY Fecha_Final ASC");
     <h1>Lista de Tareas</h1>
 
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="🔍 Buscar tarea...">
+      <div class="search-wrapper">
+        <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <input type="text" id="searchInput" placeholder="Buscar tarea...">
+      </div>
     </div>
 
     <table class="table-custom">
