@@ -131,6 +131,7 @@
 
             <label for="Fecha_Final">Fecha límite</label>
             <input type="datetime-local" id="Fecha_Final" name="Fecha_Final" step="1" required>
+            <input type="hidden" name="id_lista" value="<?= htmlspecialchars($_GET['id_lista']) ?>">
 
             <input type="submit" value="Crear Tarea" class="btn btn-dark">
         </form>
