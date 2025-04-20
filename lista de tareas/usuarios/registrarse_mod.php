@@ -10,7 +10,22 @@ $isOk =
         insertUsuario($_POST['Usuario'], $_POST['Password'], $_POST['Email']) : false;
 
 // Si el registro de usuario falla, redirige a la pagina de registro de usuario con un mensaje de error
-!$isOk ? redirectIfError("./registrarse.php", "Error de registro de usuario", "El nombre de usuario ya esta en uso") : logIn($_POST['Usuario'], $_POST['Password']);
+!$isOk ? redirectModal(
+    "error", 
+    "Error de registro de usuario", 
+    "El nombre de usuario ya esta en uso", 
+    "Volver a intentar",
+    "./registrarse.php"
+    ) : logIn($_POST['Usuario'], $_POST['Password']);
 
 // Redirige a la lista de tareas si el registro fue exitoso
-executeIf($isOk, redirect("../index.php"));
+executeIf($isOk, function() {
+    redirectModal(
+        "success", 
+        "Registro exitoso", 
+        "Usuario registrado correctamente", 
+        "Continuar",
+        "../index.php"
+    );
+    }
+);

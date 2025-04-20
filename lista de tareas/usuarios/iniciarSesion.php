@@ -14,24 +14,28 @@
    
     <link rel="stylesheet" href="../css/modal.css">
     <script type="module">
-        // Importa las funciones necesarias para crear el modal de error
-        import { createErrorModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from '../js/modals.js';
+        // Importa las funciones necesarias para crear el modal de 
+        import { createModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from '../js/modals.js';
 
-        // Guarda el mensaje de error y el titulo en variables y 
+        // Guarda el mensaje de  y el titulo en variables y 
         // si los sessions no estan definidos deja las variables vacias
-        const errorTitle = '<?php echo $_SESSION['error_title'] ?? ''; ?>';
-        const errorMessage = '<?php echo $_SESSION['error_message'] ?? ''; ?>';
+        const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
+        const title = '<?php echo $_SESSION['modal_title'] ?? ''; ?>';
+        const message = '<?php echo $_SESSION['modal_message'] ?? ''; ?>';
+        const buttonText = '<?php echo $_SESSION['modal_button_text'] ?? ''; ?>';
 
-        // Elimina las variables de sesion relacionadas al error para que no se muestren de nuevo
-        <?php unsetSessions(['error_title', 'error_message']); ?>
+        // Elimina las variables de sesion relacionadas al  para que no se muestren de nuevo
+        <?php unsetSessions(['modal_id','modal_title', 'modal_message', 'modal_button_text']); ?>
 
-        // Ejecuta la funcion createErrorModal si el mensaje de error y el titulo no son vacios y
+        // Ejecuta la funcion createModal si el mensaje de  y el titulo no son vacios y
         // si estan definidos
-        isDefined([errorTitle, errorMessage]) && !areIndexesEmpty([errorTitle, errorMessage]) ?
-            createErrorModal(
-                'errorModal', 
-                errorTitle, 
-                errorMessage
+        isDefined([id,title, message, buttonText]) && 
+        !areIndexesEmpty([id,title, message, buttonText]) ?
+            createModal(
+                id, 
+                title, 
+                message,
+                buttonText
             ) : null;
     </script>
     <style>

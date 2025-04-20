@@ -9,11 +9,13 @@ function redirect($url)
 }
 
 // Funcion que guarda un mensaje y titulo de error y redirige a una URL especificada 
-function redirectIfError($url, $title, $message)
+function redirectModal($id, $title, $message, $buttonText, $url)
 {
     session_start();
-    $_SESSION['error_title'] = $title;
-    $_SESSION['error_message'] = $message;
+    $_SESSION['modal_id'] = $id;
+    $_SESSION['modal_title'] = $title;
+    $_SESSION['modal_message'] = $message;
+    $_SESSION['modal_button_text'] = $buttonText;
 
     redirect($url);
 

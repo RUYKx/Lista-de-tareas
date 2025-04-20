@@ -11,7 +11,18 @@ $isOk = logIn($_POST['Usuario'], $_POST['Password']);
 
 // Si hay un error en el inicio de sesion, redirige a la pagina de inicio de sesion con un mensaje de error
 // Si el inicio de sesion es exitoso, redirige a la pagina de inicio
-!$isOk ? redirectIfError("./iniciarSesion.php", "Error de inicio de sesion", "Usuario o contraseña incorrectos")
-: redirect("../index.php");
+!$isOk ? redirectModal(
+    "error",
+    "Error de inicio de sesion", 
+    "Usuario o contraseña incorrectos", 
+    "Volver a intentar",
+    "./iniciarSesion.php"
+    ): redirectModal(
+        "success",
+        "Inicio de sesion exitoso", 
+        "Usuario logueado correctamente", 
+        "Continuar",
+        "../index.php"
+    );
 
 ?>
