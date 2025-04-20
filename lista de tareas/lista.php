@@ -257,11 +257,11 @@ if (isset($_GET['id_lista'])) {
                       <i class="fa-solid fa-pen"></i> Editar
                     </a>
                   </td>';
-            echo '<td>
-                    <a href="./borrar.php?id=' . $row["id"] . '" class="btn-icon btn-delete" onclick="return confirmarBorrado()">
-          <i class="fa-solid fa-trash"></i> Borrar
-        </a>
-                  </td>';
+                  echo '<td>
+                  <a href="./borrar.php?id=' . $row["id"] . '&id_lista=' . $id_lista . '" class="btn-icon btn-delete" onclick="return confirmarBorrado()">
+                    <i class="fa-solid fa-trash"></i> Borrar
+                  </a>
+                </td>';
             echo '</tr>';
           }
 
