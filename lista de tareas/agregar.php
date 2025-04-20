@@ -1,6 +1,8 @@
 <?php
     // Zona horaria Argentina
     date_default_timezone_set('America/Argentina/Buenos_Aires');
+    require_once 'components/users.php';
+    require_once 'components/utils.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -141,6 +143,41 @@
 
         <a href="index.php" class="btn-light btn-volver">← Volver</a>
     </div>
+    <script type="module">
+          import { createModal, showModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from './js/modals.js';
+
+        // Guarda el mensaje de  y el titulo en variables y 
+        // si los sessions no estan definidos deja las variables vacias
+        const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
+        const title = '<?php echo $_SESSION['modal_title'] ?? ''; ?>';
+        const message = '<?php echo $_SESSION['modal_message'] ?? ''; ?>';
+        const buttonText = '<?php echo $_SESSION['modal_button_text'] ?? ''; ?>';
+
+        // Elimina las variables de sesion relacionadas al  para que no se muestren de nuevo
+        <?php unsetSessions(['modal_id','modal_title', 'modal_message', 'modal_button_text']); ?>
+
+        // Ejecuta la funcion show modal que muestra el modal si el mensaje de  y el titulo no son vacios y
+        // si estan definidos
+        executeIf(showModal(id, title, message,buttonText), 
+            document.querySelector('.login-form').addEventListener('submit', function (event) {
+            const fechaInicial = document.getElementById('Fecha_Inicial').value;
+            const fechaFinal = document.getElementById('Fecha_Final').value;
+
+            if (new Date(fechaInicial) >= new Date(fechaFinal)) {
+                event.preventDefault(); // Prevent form submission
+                showModal(
+                    "error",
+                    "Error de fecha",
+                    "La fecha de inicio debe ser anterior a la fecha límite.",
+                    "Volver a intentar"
+                );
+            }
+
+
+        }));
+
+        
+    </script>
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 <?php
+// lista.php
 require_once 'components/users.php';
 require_once 'conex.php';
 
@@ -144,12 +145,41 @@ if (isset($_GET['id_lista'])) {
     .btn-delete:hover {
       background: #fdd;
     }
+    .btn-agregar {
+        background: #111;
+        color: #fff;
+        border: none;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: background 0.3s ease;
+    }
+
+    .btn-agregar:hover {
+        background: #333;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
   </style>
 </head>
 <body>
   <div class="task-container">
     <h1>Lista de Tareas</h1>
-
+    <a href="agregar.php" class="btn-agregar" title="Agregar tarea">
+    <i class="fa-solid fa-plus"></i>
+</a>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="🔍 Buscar tarea...">
     </div>
@@ -160,7 +190,7 @@ if (isset($_GET['id_lista'])) {
           <th>#</th>
           <th>Tarea</th>
           <th>Descripción</th>
-          <th>Estado</th>
+          <th style="padding-right: 4rem;">Estado</th>
           <th>Fecha de inicio</th>
           <th>Fecha límite</th>
           <th>Cambiar Estado</th>
@@ -179,8 +209,8 @@ if (isset($_GET['id_lista'])) {
             echo '<td>' . htmlspecialchars($row["Tarea"]) . '</td>';
             echo '<td>' . htmlspecialchars($row["Descripcion"]) . '</td>';
             echo '<td>' . $esta . '</td>';
-            echo '<td>' . $row["Fecha_Inicial"] . '</td>';
-            echo '<td>' . $row["Fecha_Final"] . '</td>';
+            echo '<td>' . date('M d', strtotime($row["Fecha_Inicial"])) . '</td>';
+            echo '<td>' . date('M d', strtotime($row["Fecha_Final"])) . '</td>';
             echo '<td>
                     <a href="./cambiarEstadoTarea.php?id=' . $row["id"] . '&Esta_Finalizado=' . $row["Esta_Finalizado"] . '">
                       <button class="btn-icon btn-complete">

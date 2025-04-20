@@ -57,7 +57,6 @@ require_once 'components/utils.php';
                 executeIf(isLoggedIn(), function() {
                     echo '<li><a href="./usuarios/logOut.php">Cerrar Sesión</a></li>';
                     echo '<li><a href="./listasdiv.php">Mis Tareas</a></li>';
-                    echo '<li><a href="./agregar.php">Agregar Tarea</a></li>';
                 });
 
                 // Si el usuario no está autenticado, se muestran las opciones para iniciar sesión o registrarse.
@@ -81,7 +80,6 @@ require_once 'components/utils.php';
             executeIf(isLoggedIn(), function() {
                 echo '
                     <a href="./listasdiv.php"><button class="btn btn-dark">Ir a mis tareas</button></a>
-                    <a href="./agregar.php"><button class="btn btn-dark">Agregar Tarea</button></a>
                 ';
             });
             ?>
