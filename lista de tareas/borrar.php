@@ -6,4 +6,4 @@ require_once "components/db_queries.php";
 deleteTarea($_GET["id"]);
 
 // Redirige a la lista de tareas
-redirect("lista.php");
+redirect("listasdiv.php");

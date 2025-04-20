@@ -246,12 +246,12 @@ if (isset($_GET['id_lista'])) {
             echo '<td>' . date('M d', strtotime($row["Fecha_Inicial"])) . '</td>';
             echo '<td>' . date('M d', strtotime($row["Fecha_Final"])) . '</td>';
             echo '<td>
-                    <a href="./cambiarEstadoTarea.php?id=' . $row["id"] . '&Esta_Finalizado=' . $row["Esta_Finalizado"] . '">
-                      <button class="btn-icon btn-complete">
-                        <i class="fa-solid fa-check"></i> ' . $btnStateText . '
-                      </button>
-                    </a>
-                  </td>';
+                <a href="./cambiarEstadoTarea.php?id=' . $row["id"] . '&Esta_Finalizado=' . $row["Esta_Finalizado"] . '&id_lista=' . $id_lista . '">
+                  <button class="btn-icon btn-complete">
+                  <i class="fa-solid fa-check"></i> ' . $btnStateText . '
+                  </button>
+                </a>
+                </td>';
             echo '<td>
                     <a href="./editar.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
                       <i class="fa-solid fa-pen"></i> Editar
