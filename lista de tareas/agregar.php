@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Estilos “login-container” reutilizados -->
     <style>
         .login-container {
             max-width: 400px;
@@ -93,6 +92,7 @@
             margin-top: 1.6rem;
             transition: background-color 0.3s;
         }
+
         .btn-volver {
             padding: 0.55rem 1.1rem;
             font-size: 16px;
@@ -111,13 +111,14 @@
 <body>
     <div class="login-container">
         <h1>Agregar Tarea</h1>
-
         <form action="agregar_mod.php" method="post" class="login-form">
+            <input type="hidden" name="id_lista" value="<?= htmlspecialchars($id_lista) ?>">
+
             <label for="Tarea">Nombre de la tarea</label>
-            <input type="text" id="Tarea" name="Tarea" placeholder="Título de la tarea" required>
+            <input type="text" id="Tarea" name="Tarea" required>
 
             <label for="Descripcion">Descripción</label>
-            <input type="text" id="Descripcion" name="Descripcion" placeholder="Descripción breve" required>
+            <input type="text" id="Descripcion" name="Descripcion" required>
 
             <label for="Esta_Finalizado">Estado</label>
             <select id="Esta_Finalizado" name="Esta_Finalizado">
@@ -126,14 +127,7 @@
             </select>
 
             <label for="Fecha_Inicial">Fecha de inicio</label>
-            <input
-                type="datetime-local"
-                id="Fecha_Inicial"
-                name="Fecha_Inicial"
-                step="1"
-                value="<?php echo date('Y-m-d\TH:i:s'); ?>"
-                required
-            >
+            <input type="datetime-local" id="Fecha_Inicial" name="Fecha_Inicial" step="1" value="<?= date('Y-m-d\TH:i:s'); ?>" required>
 
             <label for="Fecha_Final">Fecha límite</label>
             <input type="datetime-local" id="Fecha_Final" name="Fecha_Final" step="1" required>
@@ -143,41 +137,32 @@
 
         <a href="index.php" class="btn-light btn-volver">← Volver</a>
     </div>
-    <script type="module">
-          import { createModal, showModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from './js/modals.js';
 
-        // Guarda el mensaje de  y el titulo en variables y 
-        // si los sessions no estan definidos deja las variables vacias
+    <script type="module">
+        import { createModal, showModal, executeIf } from './js/modals.js';
+
         const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
         const title = '<?php echo $_SESSION['modal_title'] ?? ''; ?>';
         const message = '<?php echo $_SESSION['modal_message'] ?? ''; ?>';
         const buttonText = '<?php echo $_SESSION['modal_button_text'] ?? ''; ?>';
 
-        // Elimina las variables de sesion relacionadas al  para que no se muestren de nuevo
         <?php unsetSessions(['modal_id','modal_title', 'modal_message', 'modal_button_text']); ?>
 
-        // Ejecuta la funcion show modal que muestra el modal si el mensaje de  y el titulo no son vacios y
-        // si estan definidos
-        executeIf(showModal(id, title, message,buttonText), 
+        executeIf(showModal(id, title, message, buttonText), 
             document.querySelector('.login-form').addEventListener('submit', function (event) {
-            const fechaInicial = document.getElementById('Fecha_Inicial').value;
-            const fechaFinal = document.getElementById('Fecha_Final').value;
-
-            if (new Date(fechaInicial) >= new Date(fechaFinal)) {
-                event.preventDefault(); // Prevent form submission
-                showModal(
-                    "error",
-                    "Error de fecha",
-                    "La fecha de inicio debe ser anterior a la fecha límite.",
-                    "Volver a intentar"
-                );
-            }
-
-
-        }));
-
-        
+                const fechaInicial = document.getElementById('Fecha_Inicial').value;
+                const fechaFinal = document.getElementById('Fecha_Final').value;
+                if (new Date(fechaInicial) >= new Date(fechaFinal)) {
+                    event.preventDefault();
+                    showModal(
+                        "error",
+                        "Error de fecha",
+                        "La fecha de inicio debe ser anterior a la fecha límite.",
+                        "Volver a intentar"
+                    );
+                }
+            })
+        );
     </script>
 </body>
-
 </html>

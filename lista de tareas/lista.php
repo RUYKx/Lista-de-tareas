@@ -193,19 +193,24 @@ if (isset($_GET['id_lista'])) {
     }
 
     .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 24px;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative;
+}
+
   </style>
 </head>
 <body>
   <div class="task-container">
-    <h1>Lista de Tareas</h1>
-    <a href="agregar.php" class="btn-agregar" title="Agregar tarea">
-    <i class="fa-solid fa-plus"></i>
+  <div class="header">
+  <h1>Lista de Tareas</h1>
+  <a href="agregar.php?id_lista=<?= $id_lista ?>" class="btn-agregar" title="Agregar tarea">
+  <i class="fa-solid fa-plus"></i>
 </a>
+  </a>
+</div>
     <div class="search-bar">
       <div class="search-wrapper">
         <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
