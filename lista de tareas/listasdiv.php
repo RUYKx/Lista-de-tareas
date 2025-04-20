@@ -54,7 +54,7 @@ if (!$conn) {
 }
 */
 $sql = "SELECT * FROM listas WHERE usuario = ?";
-$stmt = $conn->prepare($sql);
+$stmt = $connection->prepare($sql);
 $stmt->bind_param("s", $_SESSION['Usuario']);
 $stmt->execute();
 $result = $stmt->get_result();
