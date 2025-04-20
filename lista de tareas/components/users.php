@@ -3,8 +3,11 @@ require_once __DIR__ . '/../conex.php';
 require_once __DIR__ . '/utils.php';
 require_once __DIR__ . '/db_queries.php';
 
-// Inicia la sesion
-session_start();
+// Verifica si la sesion ya ha sido iniciada, si no, la inicia
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // Obtiene el usuario con el nombre de usuario especificado
 function getUsuario($usuario)

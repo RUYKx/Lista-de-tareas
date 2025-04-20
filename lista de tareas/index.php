@@ -1,5 +1,8 @@
 <?php
 
+// Se incluyen los archivos necesarios para manejar usuarios y utilidades.
+// 'users.php' probablemente contiene funciones relacionadas con la autenticación de usuarios.
+// 'utils.php' contiene funciones auxiliares como 'executeIf' que se utiliza más adelante.
 require_once 'components/users.php';
 require_once 'components/utils.php';
 
@@ -9,25 +12,30 @@ require_once 'components/utils.php';
 <html lang="es">
 
 <head>
+    <!-- Configuración básica del documento HTML -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor de Tareas</title>
+    <!-- Enlace al archivo CSS para los estilos -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <header class="header">
+        <!-- Título o logo de la aplicación -->
         <h1 class="logo">TaskManager</h1>
         <nav>
             <ul class="nav-links">
                 <?php
+                // Si el usuario está autenticado, se muestran las opciones del menú relacionadas con su sesión.
                 executeIf(isLoggedIn(), function() {
                     echo '<li><a href="./usuarios/logOut.php">Cerrar Sesión</a></li>';
                     echo '<li><a href="./lista.php">Mis Tareas</a></li>';
                     echo '<li><a href="./agregar.php">Agregar Tarea</a></li>';
                 });
 
+                // Si el usuario no está autenticado, se muestran las opciones para iniciar sesión o registrarse.
                 executeIf(!isLoggedIn(), function() {
                     echo '<li><a href="./usuarios/iniciarSesion.php">Iniciar Sesión</a></li>';
                     echo '<li><a href="./usuarios/registrarse.php">Registrarse</a></li>';
@@ -38,21 +46,24 @@ require_once 'components/utils.php';
     </header>
 
     <main class="main-content">
+        <!-- Título principal y descripción de la aplicación -->
         <h2 class="titulo">Gestor de Tareas</h2>
         <p class="descripcion">Una aplicación simple para gestionar tus tareas diarias. Crea, edita, marca como completada y elimina tus tareas fácilmente.</p>
 
         <div class="botones-principales">
-    <?php
-        executeIf(isLoggedIn(), function() {
-            echo '
-                <a href="./lista.php"><button class="btn btn-dark">Ir a mis tareas</button></a>
-                <a href="./agregar.php"><button class="btn btn-dark">Agregar Tarea</button></a>
-            ';
-        });
-    ?>
-</div>
+            <?php
+            // Si el usuario está autenticado, se muestran botones para acceder a sus tareas o agregar nuevas.
+            executeIf(isLoggedIn(), function() {
+                echo '
+                    <a href="./listasdiv.php"><button class="btn btn-dark">Ir a mis tareas</button></a>
+                    <a href="./agregar.php"><button class="btn btn-dark">Agregar Tarea</button></a>
+                ';
+            });
+            ?>
+        </div>
 
         <div class="secciones">
+            <!-- Secciones informativas sobre las funcionalidades de la aplicación -->
             <div class="seccion">
                 <h3>Crea tareas</h3>
                 <p>Añade nuevas tareas a tu lista con un título y descripción.</p>

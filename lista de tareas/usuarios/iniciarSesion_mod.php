@@ -14,4 +14,12 @@ $isOk = logIn($_POST['Usuario'], $_POST['Password']);
 !$isOk ? redirectIfError("./iniciarSesion.php", "Error de inicio de sesion", "Usuario o contraseña incorrectos")
 : redirect("../index.php");
 
+session_start();
+if ($usuarioAutenticado) { // Verifica si el usuario se autenticó correctamente
+    $_SESSION['usuario'] = $usuario; // Guarda el usuario en la sesión
+    header("Location: ../listasdiv.php"); // Redirige a la página de listas
+    exit;
+} else {
+    echo "Credenciales incorrectas.";
+}
 ?>
