@@ -80,7 +80,7 @@ export function createModal(id, title, message, buttonText) {
     closeButton.className = 'close-button';
     closeButton.innerHTML = buttonText; // Texto del boton de cerrar
     closeButton.onclick = function () {
-        document.getElementById(id).style.display = 'none';
+        document.getElementById(id).remove(); // Elimina el modal al hacer click en el boton de cerrar
     };
 
     const Img = document.createElement('img');
@@ -121,147 +121,13 @@ export function createModal(id, title, message, buttonText) {
     // Añade el modal al body del documento
     document.body.appendChild(modal);
 
+    return true; // Retorna true si el modal se ha creado correctamente
 }
 
-// Funcion que crea el modal pidiendo el titulo, mensaje y id del modal
-export function createErrorModal(id, title, message,) {
-
-    // Crea el modal y le asigna el id, clase y lo oculta inicialmente
-    const modal = document.createElement('div');
-    modal.id = id;
-    modal.className = 'modal';
-    modal.style.display = 'flex'; // Initially hidden
-
-    // Crea el contenedor del contenido del modal
-    const modalContent = document.createElement('div');
-    modalContent.className = 'modal-content';
-
-    // Crea el encabezado, cuerpo y pie del modal
-    const modalContentHead = document.createElement('div');
-    modalContentHead.className = 'modal-content-head';
-
-    const modalContentBody = document.createElement('div');
-    modalContentBody.className = 'modal-content-body';
-
-    const modalContentFoot = document.createElement('div');
-    modalContentFoot.className = 'modal-content-foot';
-
-    // Crea el boton de cerrar
-    const closeButton = document.createElement('span');
-    closeButton.className = 'close-button';
-    closeButton.innerHTML = 'Intentar de nuevo';
-    closeButton.onclick = function () {
-        document.getElementById(id).style.display = 'none';
-    };
-
-    const errorImg = document.createElement('img');
-    errorImg.src = '../img/error.png'; // Ruta de la imagen de error
-    errorImg.alt = 'Error';
-    errorImg.className = 'error-img'; // Clase para la imagen de error
-    errorImg.style.width = '20%'; // Ajusta el tamaño de la imagen según sea necesario
-    errorImg.style.height = 'auto'; // Ajusta el tamaño de la imagen según sea necesario
-
-
-    // Crea el titulo del modal
-    const modalTitle = document.createElement('h2');
-    modalTitle.textContent = title;
-
-    // Crea el mensaje del modal
-    const modalMessage = document.createElement('p');
-    modalMessage.textContent = message;
-
-
-    // Añade al encabezado del modal el boton de cerrar y el titulo
-    modalContentHead.appendChild(errorImg);
-    modalContentHead.appendChild(modalTitle);
-
-    // Añade el mensaje al cuerpo del modal
-    modalContentBody.appendChild(modalMessage);
-
-    // Añade el boton de cerrar al pie del modal
-    modalContentFoot.appendChild(closeButton);
-
-
-    // Añade los elementos al contenedor del modal
-    modalContent.appendChild(modalContentHead);
-    modalContent.appendChild(modalContentBody);
-    modalContent.appendChild(modalContentFoot);
-
-    // Añade el contenedor del contenido al modal
-    modal.appendChild(modalContent);
-
-    // Añade el modal al body del documento
-    document.body.appendChild(modal);
-
-}
-
-export function createSuccessModal(id, title, message,) {
-
-    // Crea el modal y le asigna el id, clase y lo oculta inicialmente
-    const modal = document.createElement('div');
-    modal.id = id;
-    modal.className = 'modal';
-    modal.style.display = 'flex'; // Initially hidden
-
-    // Crea el contenedor del contenido del modal
-    const modalContent = document.createElement('div');
-    modalContent.className = 'modal-content';
-
-    // Crea el encabezado, cuerpo y pie del modal
-    const modalContentHead = document.createElement('div');
-    modalContentHead.className = 'modal-content-head';
-
-    const modalContentBody = document.createElement('div');
-    modalContentBody.className = 'modal-content-body';
-
-    const modalContentFoot = document.createElement('div');
-    modalContentFoot.className = 'modal-content-foot';
-
-    // Crea el boton de cerrar
-    const closeButton = document.createElement('span');
-    closeButton.className = 'close-button';
-    closeButton.innerHTML = 'Continuar';
-    closeButton.onclick = function () {
-        document.getElementById(id).style.display = 'none';
-    };
-
-    const successImg = document.createElement('img');
-    successImg.src = '../img/success.png'; // Ruta de la imagen de success
-    successImg.alt = 'Success';
-    successImg.className = 'success-img'; // Clase para la imagen de success
-    successImg.style.width = '20%'; // Ajusta el tamaño de la imagen según sea necesario
-    successImg.style.height = 'auto'; // Ajusta el tamaño de la imagen según sea necesario
-
-
-    // Crea el titulo del modal
-    const modalTitle = document.createElement('h2');
-    modalTitle.textContent = title;
-
-    // Crea el mensaje del modal
-    const modalMessage = document.createElement('p');
-    modalMessage.textContent = message;
-
-
-    // Añade al encabezado del modal el boton de cerrar y el titulo
-    modalContentHead.appendChild(successImg);
-    modalContentHead.appendChild(modalTitle);
-
-    // Añade el mensaje al cuerpo del modal
-    modalContentBody.appendChild(modalMessage);
-
-    // Añade el boton de cerrar al pie del modal
-    modalContentFoot.appendChild(closeButton);
-
-
-    // Añade los elementos al contenedor del modal
-    modalContent.appendChild(modalContentHead);
-    modalContent.appendChild(modalContentBody);
-    modalContent.appendChild(modalContentFoot);
-
-    // Añade el contenedor del contenido al modal
-    modal.appendChild(modalContent);
-
-    // Añade el modal al body del documento
-    document.body.appendChild(modal);
-
+// Funcion que crea un modal y lo muestra en pantalla
+export function showModal(id, title, message, buttonText) {
+    
+    isDefined([id,title, message, buttonText]) && 
+    !areIndexesEmpty([id,title, message, buttonText]) ?
+    createModal(id, title, message, buttonText) : false;
 }

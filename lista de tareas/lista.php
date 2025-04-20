@@ -6,7 +6,8 @@ require_once 'conex.php';
 !isLoggedIn() ? redirect('index.php') : null;
 
 $contador = 1;
-$res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 ORDER BY Fecha_Final ASC");
+$res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 AND 
+Usuario = '".$_SESSION['Usuario']."' ORDER BY Fecha_Final ASC");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -138,7 +139,7 @@ $res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 OR
           <th>#</th>
           <th>Tarea</th>
           <th>Descripción</th>
-          <th>Estado</th>
+          <th style="padding-right: 4rem;">Estado</th>
           <th>Fecha de inicio</th>
           <th>Fecha límite</th>
           <th>Cambiar Estado</th>
@@ -157,8 +158,8 @@ $res = mysqli_query($connection, "SELECT * FROM tareas WHERE Esta_Borrado = 0 OR
             echo '<td>' . htmlspecialchars($row["Tarea"]) . '</td>';
             echo '<td>' . htmlspecialchars($row["Descripcion"]) . '</td>';
             echo '<td>' . $esta . '</td>';
-            echo '<td>' . $row["Fecha_Inicial"] . '</td>';
-            echo '<td>' . $row["Fecha_Final"] . '</td>';
+            echo '<td>' . date('M d', strtotime($row["Fecha_Inicial"])) . '</td>';
+            echo '<td>' . date('M d', strtotime($row["Fecha_Final"])) . '</td>';
             echo '<td>
                     <a href="./cambiarEstadoTarea.php?id=' . $row["id"] . '&Esta_Finalizado=' . $row["Esta_Finalizado"] . '">
                       <button class="btn-icon btn-complete">

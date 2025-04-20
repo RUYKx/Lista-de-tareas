@@ -22,8 +22,8 @@ require_once 'components/utils.php';
     <link rel="stylesheet" href="css/modal.css">
     <script type="module">
         // Importa las funciones necesarias para crear el modal de 
-        import { createModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from './js/modals.js';
-        // Guarda el mensaje de  y el titulo en variables y 
+        import { createModal, showModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from './js/modals.js';
+         // Guarda el mensaje de  y el titulo en variables y 
         // si los sessions no estan definidos deja las variables vacias
         const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
         const title = '<?php echo $_SESSION['modal_title'] ?? ''; ?>';
@@ -33,16 +33,10 @@ require_once 'components/utils.php';
         // Elimina las variables de sesion relacionadas al  para que no se muestren de nuevo
         <?php unsetSessions(['modal_id','modal_title', 'modal_message', 'modal_button_text']); ?>
 
-        // Ejecuta la funcion createModal si el mensaje de  y el titulo no son vacios y
+        // Ejecuta la funcion show modal que muestra el modal si el mensaje de  y el titulo no son vacios y
         // si estan definidos
-        isDefined([id,title, message, buttonText]) && 
-        !areIndexesEmpty([id,title, message, buttonText]) ?
-            createModal(
-                id, 
-                title, 
-                message,
-                buttonText
-            ) : null;
+        showModal(id, title, message,buttonText);
+
     </script>
 </head>
 
