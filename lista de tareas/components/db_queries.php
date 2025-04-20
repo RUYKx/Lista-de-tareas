@@ -12,12 +12,12 @@ function getTarea($id)
 }
 
 // Funcion que añade una tarea a la base de datos
-function insertTarea($tarea, $descripcion, $esta_finalizado, $fecha_inicial, $fecha_final, $usuario)
+function insertTarea($tarea, $descripcion, $esta_finalizado, $fecha_inicial, $fecha_final, $usuario, $id_lista)
 {
     // Establece la zona horaria a Buenos Aires
     date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-    $query = "INSERT INTO `tareas` (`Tarea`, `Descripcion`, `Esta_Finalizado`, `Fecha_Final`, `Fecha_Inicial`, `Fecha_Creacion`, Usuario) VALUES ('" . $tarea . "', '" . $descripcion . "', '" . $esta_finalizado . "', '" . $fecha_final . "', '" . $fecha_inicial . "', '" . date('Y-m-d H:i:s') . "', '" . $usuario . "');";
+    $query = "INSERT INTO `tareas` (`Tarea`, `Descripcion`, `Esta_Finalizado`, `Fecha_Final`, `Fecha_Inicial`, `Fecha_Creacion`, `Usuario`, `id_lista`) VALUES ('" . $tarea . "', '" . $descripcion . "', '" . $esta_finalizado . "', '" . $fecha_final . "', '" . $fecha_inicial . "', '" . date('Y-m-d H:i:s') . "', '" . $usuario . "', '" . $id_lista . "');";
     mysqli_query($GLOBALS['connection'], $query);
     return true;
 }
