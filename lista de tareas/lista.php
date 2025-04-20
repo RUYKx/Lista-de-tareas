@@ -63,15 +63,15 @@ Usuario = '".$_SESSION['Usuario']."' ORDER BY Fecha_Final ASC");
     .search-wrapper .search-icon {
       position: absolute; /* Position the icon inside the input */
       top: 50%; /* Center vertically */
-      left: 10px; /* Add some space from the left */
-      transform: translateY(-50%); /* Adjust for vertical centering */
+      left: 1%; /* Add some space from the left */
+      transform: translateY(-52%); /* Adjust for vertical centering */
       color: #aaa; /* Optional: Icon color */
       pointer-events: none; /* Prevent the icon from blocking input clicks */
     }
 
     .search-wrapper input {
-      width: 100%; /* Full width for the input */
-      padding: 10px 10px 10px 36px; /* Add left padding to make space for the icon */
+      width: 96.5%; /* Full width for the input */
+      padding: 1% 0 1% 3.5%; /* Add left padding to make space for the icon */
       font-size: 1rem;
       border: 1px solid #ddd;
       border-radius: 8px;
