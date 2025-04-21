@@ -7,4 +7,3 @@
     // Redirige a la lista de tareas
     redirect("listasdiv.php");
 ?>
-    
