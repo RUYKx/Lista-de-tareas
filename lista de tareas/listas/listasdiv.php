@@ -93,7 +93,6 @@ $result = $stmt->get_result();
         .agregar-text {
             width: auto;
             padding: 0;
-            white-space: nowrap ;
             font-style: normal;
         }
 
@@ -113,11 +112,11 @@ $result = $stmt->get_result();
             text-align: center;
             position: relative;
             border: 3px solid transparent; /* Add a transparent border by default */
-            transition: border 0.1s ease;
+            transition: box-shadow 0.1s ease;
         }
 
         .lista-card:hover {
-            border: 3px solid rgb(112, 114, 241);
+            box-shadow: 0 0 3px 3px rgba(0,0,0,0.1);
         }
 
         .lista-card h3 {
@@ -147,14 +146,14 @@ $result = $stmt->get_result();
             font-size: 0.95rem;
             cursor: pointer;
             text-decoration: none;
-            border: 3px solid transparent; /* Add a transparent border by default */
+            border: 4px solid transparent; /* Add a transparent border by default */
             transition: border 0.1s ease;
             transition: box-shadow 0.1 ease;
         }
 
         .btn-ver-tareas:hover {
-            border: 3px solid rgb(187, 187, 187);
-            box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.1);
+            border: 4px solid rgb(54, 176, 247);
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.1);
         }
 
         .btn-delete {
@@ -181,7 +180,29 @@ $result = $stmt->get_result();
             color: rgb(207, 39, 39);
             text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
         }
+        .btn-light {
+            display: inline-block;
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 1.6rem;
+            transition: background-color 0.3s;
+        }
 
+        .btn-volver {
+            padding: 0.55rem 1.1rem;
+            font-size: 16px;
+            border: solid 2px rgb(235, 224, 224);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-light:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body>
@@ -216,5 +237,6 @@ $result = $stmt->get_result();
             ?>
         </div>
     </div>
+    <a href="../index.php" class="btn-light btn-volver">← Volver</a>
 </body>
 </html>
