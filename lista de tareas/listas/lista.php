@@ -1,9 +1,9 @@
 <?php
 // lista.php
-require_once 'components/users.php';
-require_once 'conex.php';
+require_once __DIR__ . '/../components/users.php';
+require_once __DIR__ . '/../conex.php';
 
-!isLoggedIn() ? redirect('index.php') : null;
+!isLoggedIn() ? redirect('../index.php') : null;
 
 $contador = 1;
 
@@ -37,12 +37,28 @@ if (isset($_GET['id_lista'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="../css/modal.css">
   <title>Lista de Tareas</title>
 
   <!-- FontAwesome para iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script type="module">
+        // Importa las funciones necesarias para crear el modal de 
+        import { createModal, executeIf, isDefined, isEmpty, areIndexesEmpty, showModal} from './../js/modals.js';
+        // Guarda el mensaje de  y el titulo en variables y 
+        // si los sessions no estan definidos deja las variables vacias
+        const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
+        const title = '<?php echo $_SESSION['modal_title'] ?? ''; ?>';
+        const message = '<?php echo $_SESSION['modal_message'] ?? ''; ?>';
+        const buttonText = '<?php echo $_SESSION['modal_button_text'] ?? ''; ?>';
 
+        // Elimina las variables de sesion relacionadas al  para que no se muestren de nuevo
+        <?php unsetSessions(['modal_id','modal_title', 'modal_message', 'modal_button_text']); ?>
+
+        // Ejecuta la funcion createModal si el mensaje de  y el titulo no son vacios y
+        // si estan definidos
+        showModal(id,title, message, buttonText);
+  </script>
   <style>
     /* Contenedor central que crece con su contenido */
     .task-container {
@@ -206,7 +222,7 @@ if (isset($_GET['id_lista'])) {
   <div class="task-container">
   <div class="header">
   <h1>Lista de Tareas</h1>
-  <a href="agregar.php?id_lista=<?= $id_lista ?>" class="btn-agregar" title="Agregar tarea">
+  <a href="./tareas/agregar.php?id_lista=<?= $id_lista ?>" class="btn-agregar" title="Agregar tarea">
   <i class="fa-solid fa-plus"></i>
 </a>
   </a>
@@ -246,19 +262,19 @@ if (isset($_GET['id_lista'])) {
             echo '<td>' . date('M d', strtotime($row["Fecha_Inicial"])) . '</td>';
             echo '<td>' . date('M d', strtotime($row["Fecha_Final"])) . '</td>';
             echo '<td>
-                <a href="./cambiarEstadoTarea.php?id=' . $row["id"] . '&Esta_Finalizado=' . $row["Esta_Finalizado"] . '&id_lista=' . $id_lista . '">
+                <a href="./tareas/cambiarEstadoTarea.php?id=' . $row["id"] . '&Esta_Finalizado=' . $row["Esta_Finalizado"] . '&id_lista=' . $id_lista . '">
                   <button class="btn-icon btn-complete">
                   <i class="fa-solid fa-check"></i> ' . $btnStateText . '
                   </button>
                 </a>
                 </td>';
             echo '<td>
-                    <a href="./editar.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
+                    <a href="./tareas/editar.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
                       <i class="fa-solid fa-pen"></i> Editar
                     </a>
                   </td>';
                   echo '<td>
-                  <a href="./borrar.php?id=' . $row["id"] . '&id_lista=' . $id_lista . '" class="btn-icon btn-delete" onclick="return confirmarBorrado()">
+                  <a href="./tareas/borrar.php?id=' . $row["id"] . '&id_lista=' . $id_lista . '" class="btn-icon btn-delete" onclick="return confirmarBorrado()">
                     <i class="fa-solid fa-trash"></i> Borrar
                   </a>
                 </td>';
@@ -285,31 +301,5 @@ if (isset($_GET['id_lista'])) {
       });
     });
   </script>
-  <script type="module">
-        import { createModal, showModal, executeIf } from './js/modals.js';
-
-        const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
-        const title = '<?php echo $_SESSION['modal_title'] ?? ''; ?>';
-        const message = '<?php echo $_SESSION['modal_message'] ?? ''; ?>';
-        const buttonText = '<?php echo $_SESSION['modal_button_text'] ?? ''; ?>';
-
-        <?php unsetSessions(['modal_id','modal_title', 'modal_message', 'modal_button_text']); ?>
-
-        executeIf(showModal(id, title, message, buttonText), 
-            document.querySelector('.login-form').addEventListener('submit', function (event) {
-                const fechaInicial = document.getElementById('Fecha_Inicial').value;
-                const fechaFinal = document.getElementById('Fecha_Final').value;
-                if (new Date(fechaInicial) >= new Date(fechaFinal)) {
-                    event.preventDefault();
-                    showModal(
-                        "error",
-                        "Error de fecha",
-                        "La fecha de inicio debe ser anterior a la fecha límite.",
-                        "Volver a intentar"
-                    );
-                }
-            })
-        );
-    </script>
 </body>
 </html>

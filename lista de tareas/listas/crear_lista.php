@@ -1,7 +1,7 @@
 <?php
-require_once 'components/conexion.php';
-require_once 'components/users.php';
-require_once 'components/utils.php';
+require_once __DIR__ . '/../components/conexion.php';
+require_once __DIR__ . '/../components/users.php';
+require_once __DIR__ . '/../components/utils.php';
 
 !isLoggedIn() ? redirect('index.php') : true;
 

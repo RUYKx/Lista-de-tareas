@@ -55,7 +55,12 @@ function executeIf($condition, $callback)
 {
     if($condition)
     {
-        $callback();
+        $res = $callback();
+        return $res;
+    }
+    else
+    {
+        return false;
     }
 }
 

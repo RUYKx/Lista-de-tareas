@@ -1,11 +1,11 @@
 <?php
 
-require_once 'components/users.php';
-require_once 'components/conexion.php';
-require_once 'components/utils.php';
-require_once 'components/db_queries.php';
+require_once __DIR__ . '/../components/users.php';
+require_once __DIR__ . '/../components/conexion.php';
+require_once __DIR__ . '/../components/utils.php';
+require_once __DIR__ . '/../components/db_queries.php';
 
-!isLoggedIn() ? redirect('index.php') : true;
+!isLoggedIn() ? redirect(__DIR__ . '/../index.php') : true;
 
 $sql = "SELECT * FROM listas WHERE usuario = ?";
 $stmt = $connection->prepare($sql);
@@ -20,7 +20,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <title>Mis Listas</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
     <style>
