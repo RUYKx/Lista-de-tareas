@@ -51,8 +51,7 @@
                 }
             })
         }
-            
-          );
+        );
     </script>
     <style>
         .login-container {

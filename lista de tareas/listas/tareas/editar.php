@@ -72,6 +72,47 @@
         button:hover {
             background-color:rgba(3, 4, 5, 0.53);
         }
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-dark {
+            background-color: #222;
+            color: white;
+        }
+
+        .btn-dark:hover {
+            background-color: #444;
+        }
+
+        .btn-light {
+            display: inline-block;
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 1.6rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-volver {
+            padding: 0.55rem 1.1rem;
+            font-size: 16px;
+            border: solid 2px rgb(235, 224, 224);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-light:hover {
+            background-color: #ddd;
+        }
     </style>
     <script type="module">
         // Importa las funciones necesarias para crear el modal de 
@@ -146,6 +187,7 @@
         <button type="submit">Actualizar</button>
     </form>';
     ?>
+    <a href="../lista.php?id_lista=<?=$row['id_lista']?>" class="btn-light btn-volver">← Volver</a>
 </div>
 </body>
 </html>

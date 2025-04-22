@@ -22,5 +22,4 @@ $isOk ? redirectModal(
     "Volver a intentar",
     "../lista.php?id_lista=" . $_GET["id_lista"]
 );
-redirect("../lista.php?id_lista=" . $_GET["id_lista"]);
 ?>
