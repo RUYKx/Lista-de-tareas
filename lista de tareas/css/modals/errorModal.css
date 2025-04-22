@@ -8,3 +8,23 @@
 .modal span:active {
     background-color: #bd2130; /* Even darker red on click */
 }
+.close-button {
+    border: none;
+    width: 70%;
+    padding: 0.8rem 0;
+    margin: 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.close-button:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.close-button:active {
+    transform: scale(1); /* Reset zoom effect */
+}

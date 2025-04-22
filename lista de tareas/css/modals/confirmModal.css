@@ -1,0 +1,42 @@
+.modal-content-foot span {
+    border: none;
+    width: 40%;
+    padding: 0.8rem 0;
+    margin: 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.modal-content-foot span:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.modal-content-foot span:active {
+    transform: scale(1); /* Reset zoom effect */
+}
+
+#closeButton {
+    background-color: #a3abb3; /* Lighter grey background */
+    color: #fff; /* White text */
+}
+#closeButton:hover {
+    background-color: #8f959b; /* Slightly darker grey on hover */
+}
+#closeButton:active {
+    background-color: #7c848b; /* Darker grey on click */
+}
+
+#confirmButton {
+    background-color: #dc3545; /* Red background */
+    color: #fff; /* White text */
+}
+#confirmButton:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+#confirmButton:active {
+    background-color: #bd2130; /* Even darker red on click */
+}
