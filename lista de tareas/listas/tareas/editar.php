@@ -21,11 +21,12 @@
         }
         body {
             margin: 0;
+            padding: 30px;
             background: #f4f6f8;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            
         }
         .form-container {
             background: #ffffff;
