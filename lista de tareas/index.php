@@ -72,7 +72,7 @@ require_once 'components/utils.php';
     <main class="main-content">
         <!-- Título principal y descripción de la aplicación -->
         <h2 class="titulo">Gestor de Tareas</h2>
-        <p class="descripcion">Una aplicación simple para gestionar tus tareas diarias. Crea, edita, marca como completada y elimina tus tareas fácilmente.</p>
+        <p class="descripcion">Una aplicacion simple para gestionar tus tareas diarias. Crea, edita, marca como completada y elimina tus tareas fácilmente.</p>
 
         <div class="botones-principales">
             <?php
