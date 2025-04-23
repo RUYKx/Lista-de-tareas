@@ -56,7 +56,7 @@ require_once 'components/utils.php';
                 // Si el usuario está autenticado, se muestran las opciones del menú relacionadas con su sesión.
                 executeIf(isLoggedIn(), function() {
                     echo '<li><a href="./usuarios/logOut.php">Cerrar Sesión</a></li>';
-                    echo '<li><a href="./listasdiv.php">Mis Tareas</a></li>';
+                    echo '<li><a href="./listas/listasdiv.php">Mis Tareas</a></li>';
                 });
 
                 // Si el usuario no está autenticado, se muestran las opciones para iniciar sesión o registrarse.
