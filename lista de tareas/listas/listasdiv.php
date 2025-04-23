@@ -1,11 +1,11 @@
 <?php
 
-require_once 'components/users.php';
-require_once 'components/conexion.php';
-require_once 'components/utils.php';
-require_once 'components/db_queries.php';
+require_once __DIR__ . '/../components/users.php';
+require_once __DIR__ . '/../components/conexion.php';
+require_once __DIR__ . '/../components/utils.php';
+require_once __DIR__ . '/../components/db_queries.php';
 
-!isLoggedIn() ? redirect('index.php') : true;
+!isLoggedIn() ? redirect(__DIR__ . '/../index.php') : true;
 
 $sql = "SELECT * FROM listas WHERE usuario = ?";
 $stmt = $connection->prepare($sql);
@@ -20,15 +20,14 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <title>Mis Listas</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
             background: #f0f2f5;
             margin: 0;
-            padding: 40px;
+            padding: 2.2%;
         }
 
         .listas-wrapper {
@@ -42,35 +41,59 @@ $result = $stmt->get_result();
 
         .header {
             display: flex;
+            width: 92%;
+            height: 9vh;
+            padding: 2% 4%;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 2.5%;
         }
 
         h1 {
             font-size: 2rem;
             color: #111;
+            cursor: default;
+            width: 50%;
+        }
+
+        .agregar-contenedor
+        {   
+            display: flex;
+            justify-content: flex-end;
+            width: 50%;
+            height: auto;
         }
 
         .btn-agregar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             background: #111;
             color: #fff;
             border: none;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            font-size: 24px;
+            border-radius: 0.5rem;
+            width: 51%;
+            height: 100%;
+            padding: 1.3% 6%;
+            font-size: 1.3rem;
             cursor: pointer;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: background 0.3s ease;
+            
         }
 
         .btn-agregar:hover {
-            background: #333;
+            background: #444;
+        }
+        .agregar-icon{
+            padding: 0 6% 0 0;
+            line-height: 90%;
+        }
+        .agregar-text {
+            width: auto;
+            padding: 0;
+            font-style: normal;
         }
 
         .listas-container {
@@ -88,17 +111,19 @@ $result = $stmt->get_result();
             width: 280px;
             text-align: center;
             position: relative;
-            transition: transform 0.2s ease;
+            border: 3px solid transparent; /* Add a transparent border by default */
+            transition: box-shadow 0.1s ease;
         }
 
         .lista-card:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 0 3px 3px rgba(0,0,0,0.1);
         }
 
         .lista-card h3 {
             margin: 0 0 10px;
             color: #222;
             font-size: 1.2rem;
+            cursor: default;
         }
 
         .lista-card p {
@@ -106,6 +131,7 @@ $result = $stmt->get_result();
             font-size: 14px;
             margin-bottom: 20px;
             min-height: 40px;
+            cursor: default;
         }
 
         .btn-ver-tareas {
@@ -119,34 +145,63 @@ $result = $stmt->get_result();
             border-radius: 8px;
             font-size: 0.95rem;
             cursor: pointer;
-            transition: background .3s ease;
             text-decoration: none;
+            border: 4px solid transparent; /* Add a transparent border by default */
+            transition: border 0.1s ease;
+            transition: box-shadow 0.1 ease;
         }
 
         .btn-ver-tareas:hover {
-            background: #444;
+            border: 4px solid rgb(54, 176, 247);
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.1);
         }
 
         .btn-delete {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background-color: #ff4d4d;
+            bottom: 1rem;
+            right: 1rem;
             color: #fff;
             border: none;
-            padding: 8px;
-            border-radius: 50%;
+            padding: 0%;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease;
         }
 
-        .btn-delete:hover {
-            background-color: #cc0000;
+        .btn-delete i {
+            padding: 0.5rem 0.4rem;
+            font-size: 20px;
+            color: rgb(180, 87, 87);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+            transition: transform 0.25s ease; /* Smooth scaling animation */
         }
 
-        .btn-delete i {
-            font-size: 18px;
+        .btn-delete i:hover {
+            transform: scale(1.3); /* Scale up the icon */
+            color: rgb(207, 39, 39);
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+        }
+        .btn-light {
+            display: inline-block;
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 1.6rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-volver {
+            padding: 0.55rem 1.1rem;
+            font-size: 16px;
+            border: solid 2px rgb(235, 224, 224);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-light:hover {
+            background-color: #ddd;
         }
     </style>
 </head>
@@ -154,9 +209,13 @@ $result = $stmt->get_result();
     <div class="listas-wrapper">
         <div class="header">
             <h1>Tus Repertorios</h1>
-            <a href="crear_lista.php" class="btn-agregar" title="Agregar Repertorio">
-                <i class="fa-solid fa-plus"></i>
-            </a>
+            <div class="agregar-contenedor">
+                <a href="crear_lista.php" class="btn-agregar" title="Agregar Repertorio">
+                    <i class="fa-solid fa-plus agregar-icon"></i>
+                    <i class="agregar-text">Añade un repositorio</i>
+                </a>
+            </div>
+            
         </div>
 
         <div class="listas-container">
@@ -178,5 +237,6 @@ $result = $stmt->get_result();
             ?>
         </div>
     </div>
+    <a href="../index.php" class="btn-light btn-volver">← Volver</a>
 </body>
 </html>

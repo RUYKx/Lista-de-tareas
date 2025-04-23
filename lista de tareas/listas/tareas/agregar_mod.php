@@ -1,6 +1,6 @@
 <?php
-require_once "components/db_queries.php";
-require_once "components/utils.php";
+require_once __DIR__ ."/../../components/db_queries.php";
+require_once __DIR__ ."/../../components/utils.php";
 
 // Guarda en $isOk si se registro o no la tarea 
 $isOk =
@@ -24,11 +24,11 @@ $isOk ? redirectModal(
     "Tarea agregada", 
     "La tarea fue agregada correctamente", 
     "Continuar",
-    "./lista.php?id_lista=" . $_POST['id_lista']
+    "./../lista.php?id_lista=" . $_POST['id_lista']
 ) : redirectModal(
     "error", 
     "Error al agregar tarea", 
     "Ha habido un error, verifique las credenciales", 
     "Volver a intentar",
-    "./agregar.php"
+    "./agregar.php?id_lista=" . $_POST['id_lista']
 );

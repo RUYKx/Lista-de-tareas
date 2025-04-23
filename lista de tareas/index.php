@@ -79,7 +79,7 @@ require_once 'components/utils.php';
             // Si el usuario está autenticado, se muestran botones para acceder a sus tareas o agregar nuevas.
             executeIf(isLoggedIn(), function() {
                 echo '
-                    <a href="./listasdiv.php"><button class="btn btn-dark">Ir a mis tareas</button></a>
+                    <a href="./listas/listasdiv.php"><button class="btn btn-dark">Ir a mis tareas</button></a>
                 ';
             });
             ?>

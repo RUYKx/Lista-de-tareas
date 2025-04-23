@@ -1,11 +1,9 @@
 <?php
-require_once 'components/conexion.php';
-require_once 'components/users.php';
-require_once 'components/utils.php';
+require_once __DIR__ . '/../components/conexion.php';
+require_once __DIR__ . '/../components/users.php';
+require_once __DIR__ . '/../components/utils.php';
 
 !isLoggedIn() ? redirect('index.php') : true;
-
-$mensaje = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
@@ -33,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Crear Repertorio</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -47,6 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             background: #fff;
             padding: 32px;
             border-radius: 12px;
@@ -63,9 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         form input,
         form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 16px;
+            width: calc(96% - 1px);
+            padding: 2%;
+            margin-bottom: 4.5%;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 15px;
@@ -76,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: #111;
             color: #fff;
             border: none;
-            padding: 12px;
+            padding: 3%;
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
@@ -87,22 +89,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background: #333;
         }
 
-        .mensaje {
-            color: red;
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .volver {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #555;
+        .btn-light {
+            display: inline-block;
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 0.55rem 1.1rem;
+            border-radius: 8px;
             text-decoration: none;
+            margin-top: 1.6rem;
+            transition: background-color 0.3s;
         }
 
-        .volver:hover {
-            text-decoration: underline;
+        .btn-volver {
+            width: fit-content;
+            padding: 0.55rem 1.1rem;
+            font-size: 16px;
+            border: solid 2px rgb(235, 224, 224);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-light:hover {
+            background-color: #ddd;
         }
     </style>
 </head>
@@ -119,8 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea name="descripcion" placeholder="Descripción (opcional)" rows="4"></textarea>
             <button type="submit">Guardar</button>
         </form>
-
-        <a class="volver" href="listasdiv.php">← Volver a tus repertorios</a>
+        <a href="./listasdiv.php" class="btn-light btn-volver">← Volver</a>
     </div>
 </body>
 </html>
