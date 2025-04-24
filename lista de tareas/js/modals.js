@@ -159,7 +159,7 @@ export function showModal(id, title, message, closeButtonText, confirmButtonText
         !areIndexesEmpty([id,title, message, closeButtonText])),
         () => 
         {
-                createModal(id, title, message, closeButtonText, confirmButtonText, confirmButtonURL)
+                createModal(id, title, message, closeButtonText)
         }
 
     );
