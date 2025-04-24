@@ -2,7 +2,11 @@
 // ejecuta una funcion si la condicion es verdadera
 export function executeIf(condition, callback) {
     if (condition) {
-        callback();
+        const res = callback();
+        return res;
+    }
+    else{
+        return false;
     }
 }
 
@@ -142,6 +146,23 @@ export function createModal(id, title, message, closeButtonText, confirmButtonTe
 // Funcion que crea un modal y lo muestra en pantalla
 export function showModal(id, title, message, closeButtonText, confirmButtonText = "", confirmButtonURL = "") {
     
+    executeIf(
+        !executeIf(
+            isDefined([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]) && 
+            !areIndexesEmpty([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]),
+            () => 
+            {
+                createModal(id, title, message, closeButtonText, confirmButtonText, confirmButtonURL)
+            }
+        ) &&
+        (isDefined([id,title, message, closeButtonText]) && 
+        !areIndexesEmpty([id,title, message, closeButtonText])),
+        () => 
+        {
+                createModal(id, title, message, closeButtonText, confirmButtonText, confirmButtonURL)
+        }
+
+    );
 
     isDefined([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]) && 
     !areIndexesEmpty([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]) ?
