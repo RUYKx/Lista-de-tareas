@@ -158,7 +158,7 @@ $result = $stmt->get_result();
 
         .btn-delete {
             position: absolute;
-            bottom: 1rem;
+            bottom: 1.5rem;
             right: 1rem;
             color: #fff;
             border: none;
@@ -203,19 +203,44 @@ $result = $stmt->get_result();
         .btn-light:hover {
             background-color: #ddd;
         }
+        
+    .btn-edit {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 3rem;
+            color: #fff;
+            border: none;
+            padding: 0%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-edit i {
+            padding: 0.5rem 0.4rem;
+            font-size: 20px;
+            color: rgb(180, 87, 87);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+            transition: transform 0.25s ease; /* Smooth scaling animation */
+        }
+
+        .btn-edit i:hover {
+            transform: scale(1.3); /* Scale up the icon */
+            color: rgb(207, 39, 39);
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
     <div class="listas-wrapper">
         <div class="header">
-            <h1>Tus Repertorios</h1>
+            <h1>Categorias</h1>
             <div class="agregar-contenedor">
                 <a href="crear_lista.php" class="btn-agregar" title="Agregar Repertorio">
                     <i class="fa-solid fa-plus agregar-icon"></i>
-                    <i class="agregar-text">Añade un repositorio</i>
+                    <i class="agregar-text">Añade una Categoria</i>
                 </a>
             </div>
-            
+                                    
         </div>
 
         <div class="listas-container">
@@ -230,6 +255,9 @@ $result = $stmt->get_result();
                             <a href="borrar_lista.php?id=' . htmlspecialchars($row['id']) . '" class="btn-delete" title="Eliminar lista" onclick="return confirm(\'¿Estás seguro que querés eliminar esta lista?\');">
     <i class="fa-solid fa-trash"></i>
 </a>
+<a href="./tareas/editar.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
+                      <i class="fa-solid fa-pen"></i> 
+                    </a>
 
 
                           </div>';
