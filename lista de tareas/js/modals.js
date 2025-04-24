@@ -145,32 +145,27 @@ export function createModal(id, title, message, closeButtonText, confirmButtonTe
 
 // Funcion que crea un modal y lo muestra en pantalla
 export function showModal(id, title, message, closeButtonText, confirmButtonText = "", confirmButtonURL = "") {
+
+    const confirmModalConditions = 
+        isDefined([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]) && 
+        !areIndexesEmpty([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]);
+
+    const closeButtonConditions =
+        isDefined([id,title, message, closeButtonText]) && 
+        !areIndexesEmpty([id,title, message, closeButtonText]);
     
     executeIf(
         !executeIf(
-            isDefined([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]) && 
-            !areIndexesEmpty([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]),
+            confirmModalConditions,
             () => 
             {
                 createModal(id, title, message, closeButtonText, confirmButtonText, confirmButtonURL);
             }
-        ) &&
-        (isDefined([id,title, message, closeButtonText]) && 
-        !areIndexesEmpty([id,title, message, closeButtonText])),
+        ) && closeButtonConditions,
         () => 
         {
                 createModal(id, title, message, closeButtonText);
         }
 
     );
-
-    isDefined([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]) && 
-    !areIndexesEmpty([id,title, message, closeButtonText, confirmButtonText, confirmButtonURL]) ?
-    createModal(id, title, message, closeButtonText, confirmButtonText, confirmButtonURL) : 
-
-    isDefined([id,title, message, closeButtonText]) && 
-    !areIndexesEmpty([id,title, message, closeButtonText]) ?
-    createModal(id, title, message, closeButtonText): false;
-
-
 }
