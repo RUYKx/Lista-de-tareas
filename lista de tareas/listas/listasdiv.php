@@ -255,7 +255,7 @@ $result = $stmt->get_result();
                             <a href="borrar_lista.php?id=' . htmlspecialchars($row['id']) . '" class="btn-delete" title="Eliminar lista" onclick="return confirm(\'¿Estás seguro que querés eliminar esta lista?\');">
     <i class="fa-solid fa-trash"></i>
 </a>
-<a href="./tareas/editar.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
+<a href="./tareas/editar_lista.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
                       <i class="fa-solid fa-pen"></i> 
                     </a>
 

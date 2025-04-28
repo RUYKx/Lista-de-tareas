@@ -16,6 +16,19 @@ function getTarea($id)
     
 }
 
+// Funcion que devuelve una categoria de la base de datos
+function getCat($id)
+{
+    $query = "SELECT * FROM `listas` WHERE id = '" . $id . "'";
+    $res = mysqli_query($GLOBALS['connection'], $query);
+
+    return 
+    isQuerySuccessful($res) ? 
+        mysqli_fetch_assoc($res):
+        false;
+    
+}
+
 // Funcion que añade una tarea a la base de datos
 function insertTarea($tarea, $descripcion, $esta_finalizado, $fecha_inicial, $fecha_final, $usuario, $id_lista)
 {
@@ -52,6 +65,13 @@ function deleteTarea($id)
 {
     $query = "UPDATE `tareas` SET `Esta_Borrado` = '1' WHERE `tareas`.`id` = '" . $id . "'";
 
+    $res = isQuerySuccessful(mysqli_query($GLOBALS['connection'], $query));
+    return $res;
+}
+// Funcion que modifica una categoria en la base de datos
+function updateCat($id, $nom, $descripcion)
+{   $query= "UPDATE `listas` SET `nombre` = '$nom', `descripcion` = '$descripcion' WHERE `listas`.`id` = $id;";
+    
     $res = isQuerySuccessful(mysqli_query($GLOBALS['connection'], $query));
     return $res;
 }
