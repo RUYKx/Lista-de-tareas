@@ -86,24 +86,24 @@ require_once 'components/utils.php';
         </div>
 
         <div class="secciones">
-            <!-- Secciones informativas sobre las funcionalidades de la aplicación -->
-            <div class="seccion">
-                <h3>Crea tareas</h3>
-                <p>Añade nuevas tareas a tu lista con un título y descripción.</p>
-            </div>
-            <div class="seccion">
-                <h3>Organiza tu día</h3>
-                <p>Marca las tareas como completadas y mantén un seguimiento de tu progreso.</p>
-            </div>
-            <div class="seccion">
-                <h3>Edita y elimina</h3>
-                <p>Modifica tus tareas o elimínalas cuando ya no las necesites.</p>
-            </div>
-        </div>
+    <div class="seccion" onclick="location.href='listas/listasdiv.php'" style="cursor: pointer;">
+        <h3>Crea tareas</h3>
+        <p>Añade nuevas tareas a tu lista con un título y descripción.</p>
+    </div>
+    <div class="seccion" onclick="location.href='listas/listasdiv.php'" style="cursor: pointer;">
+        <h3>Organiza tu día</h3>
+        <p>Marca las tareas como completadas y mantén un seguimiento de tu progreso.</p>
+    </div>
+    <div class="seccion" onclick="location.href='listas/listasdiv.php'" style="cursor: pointer;">
+        <h3>Edita y elimina</h3>
+        <p>Modifica tus tareas o elimínalas cuando ya no las necesites.</p>
+    </div>
+</div>
+
         <!-- Video explicativo pequeño -->
   <h3>Cómo usar la aplicación</h3>
   <video
-    width="900"
+    width="1000"
     height="500"
     autoplay
     muted

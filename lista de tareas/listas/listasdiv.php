@@ -5,7 +5,8 @@ require_once __DIR__ . '/../components/conexion.php';
 require_once __DIR__ . '/../components/utils.php';
 require_once __DIR__ . '/../components/db_queries.php';
 
-!isLoggedIn() ? redirect(__DIR__ . '/../index.php') : true;
+
+!isLoggedIn() ? redirect('../usuarios/iniciarSesion.php') : null;
 
 $sql = "SELECT * FROM listas WHERE usuario = ?";
 $stmt = $connection->prepare($sql);

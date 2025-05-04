@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../components/users.php';
 require_once __DIR__ . '/../conex.php';
 
-!isLoggedIn() ? redirect('../index.php') : null;
+!isLoggedIn() ? redirect('../usuarios/iniciarSesion.php') : null;
 
 $contador = 1;
 
