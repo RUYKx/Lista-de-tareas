@@ -100,6 +100,20 @@ require_once 'components/utils.php';
                 <p>Modifica tus tareas o elimínalas cuando ya no las necesites.</p>
             </div>
         </div>
+        <!-- Video explicativo pequeño -->
+  <h3>Cómo usar la aplicación</h3>
+  <video
+    width="900"
+    height="500"
+    autoplay
+    muted
+    loop
+    class="video-explicativo"
+  >
+    <source src="diseños/tutorial/My Video.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+</div>
     </main>
 </body>
 
