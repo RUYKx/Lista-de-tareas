@@ -233,11 +233,11 @@ $result = $stmt->get_result();
 <body>
     <div class="listas-wrapper">
         <div class="header">
-            <h1>Categorias</h1>
+            <h1>Listas</h1>
             <div class="agregar-contenedor">
                 <a href="crear_lista.php" class="btn-agregar" title="Agregar Repertorio">
                     <i class="fa-solid fa-plus agregar-icon"></i>
-                    <i class="agregar-text">Añade una Categoria</i>
+                    <i class="agregar-text">Añade una Lista</i>
                 </a>
             </div>
                                     

@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="form-container">
-        <h2>Crear Repertorio</h2>
+        <h2>Crear lista</h2>
 
         <?php if (!empty($mensaje)): ?>
             <p class="mensaje"><?= htmlspecialchars($mensaje) ?></p>
