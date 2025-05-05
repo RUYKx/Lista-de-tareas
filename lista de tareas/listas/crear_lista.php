@@ -3,7 +3,7 @@ require_once __DIR__ . '/../components/conexion.php';
 require_once __DIR__ . '/../components/users.php';
 require_once __DIR__ . '/../components/utils.php';
 
-!isLoggedIn() ? redirect('index.php') : true;
+executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);

@@ -3,6 +3,8 @@
     date_default_timezone_set('America/Argentina/Buenos_Aires');
     require_once __DIR__ . '/../../components/users.php';
     require_once __DIR__ . '/../../components/utils.php';
+
+    executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -1,5 +1,8 @@
 <?php
-require_once 'users.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Funcion que redirecciona a una URL especificada
 function redirect($url)

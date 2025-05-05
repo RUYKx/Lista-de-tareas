@@ -1,5 +1,7 @@
 <?php 
     include "../../components/db_queries.php";
+
+    executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
 ?>
 
 <!DOCTYPE html>

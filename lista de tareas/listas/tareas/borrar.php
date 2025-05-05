@@ -2,6 +2,8 @@
 require_once __DIR__ .'/../../components/utils.php';
 require_once __DIR__ .'/../../components/db_queries.php';
 
+executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
+
 // Elimina la tarea con el id enviado por GET
 $isOk=
 isset($_GET["id"], $_GET["id_lista"]) ?

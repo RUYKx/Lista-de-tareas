@@ -2,6 +2,9 @@
 require_once __DIR__ . "/../conex.php";
 require_once __DIR__ . "/utils.php";
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Funcion que devuelve una tarea de la base de datos
 function getTarea($id)

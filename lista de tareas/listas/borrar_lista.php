@@ -1,6 +1,9 @@
 <?php
 require_once __DIR__ . '/../components/utils.php';
 require_once __DIR__ . '/../components/db_queries.php';
+require_once __DIR__ . '/../components/users.php';
+
+executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
 
 $id_lista = $_GET['id'] ?? null;
 

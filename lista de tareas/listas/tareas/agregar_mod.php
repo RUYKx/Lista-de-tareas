@@ -2,6 +2,8 @@
 require_once __DIR__ ."/../../components/db_queries.php";
 require_once __DIR__ ."/../../components/utils.php";
 
+executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
+
 // Guarda en $isOk si se registro o no la tarea 
 $isOk =
 strtotime($_POST['Fecha_Inicial']) <= strtotime($_POST['Fecha_Final']) &&

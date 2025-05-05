@@ -2,6 +2,8 @@
 require_once __DIR__ .'/../../components/utils.php';
 require_once __DIR__ .'/../../components/db_queries.php';
 
+executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
+
 // Cambia el estado de la tarea a completada o no completada
 updateStatus($_GET["id"], $_GET["Esta_Finalizado"]);
 

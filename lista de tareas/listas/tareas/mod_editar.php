@@ -2,6 +2,8 @@
     require_once __DIR__ .'/../../components/utils.php';
     require_once __DIR__ .'/../../components/db_queries.php';
 
+    executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
+
     $isOk =
     executeIf(
         strtotime($_GET['Fecha_Inicial']) <= strtotime($_GET['Fecha_Final']) &&
