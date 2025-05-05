@@ -5,7 +5,6 @@
 // 'utils.php' contiene funciones auxiliares como 'executeIf' que se utiliza más adelante.
 require_once 'components/users.php';
 require_once 'components/utils.php';
-
 ?>
 
 <!DOCTYPE html>

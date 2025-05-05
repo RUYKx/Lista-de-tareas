@@ -160,11 +160,13 @@ export function showModal(id, title, message, closeButtonText, confirmButtonText
             () => 
             {
                 createModal(id, title, message, closeButtonText, confirmButtonText, confirmButtonURL);
+                return true; // Modal created successfully
             }
         ) && closeButtonConditions,
         () => 
         {
-                createModal(id, title, message, closeButtonText);
+            createModal(id, title, message, closeButtonText);
+            return true; // Modal created successfully
         }
 
     );

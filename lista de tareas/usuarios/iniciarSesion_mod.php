@@ -3,6 +3,10 @@
 require_once "../components/users.php";
 require_once "../components/utils.php";
 
+executeIf(isLoggedIn(), function() {
+    redirect('../index.php');
+});
+
 // Inicia sesion con el usuario y contraseña enviados
 //logIn($_POST['Usuario'], $_POST['Password'], isLoggedIn());
 

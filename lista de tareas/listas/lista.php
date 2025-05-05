@@ -1,9 +1,12 @@
 <?php
 // lista.php
+require_once __DIR__ . '/../components/utils.php';
+require_once __DIR__ . '/../components/db_queries.php';
 require_once __DIR__ . '/../components/users.php';
-require_once __DIR__ . '/../conex.php';
 
-executeIf(!isLoggedIn(), redirect('../usuarios/iniciarSesion.php'));
+executeIf(!isLoggedIn(), function() {
+  redirect('../usuarios/iniciarSesion.php');
+});
 
 $contador = 1;
 

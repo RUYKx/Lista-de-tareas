@@ -2,6 +2,10 @@
 require_once "../components/users.php";
 require_once "../components/utils.php";
 
+executeIf(isLoggedIn(), function() {
+    redirect('../index.php');
+});
+
 //earon@gmail.com
 
 // Guarda si se registro o no el usuario en la variable $isOk
