@@ -35,14 +35,8 @@ require_once 'components/utils.php';
 
         // Ejecuta la funcion createModal si el mensaje de  y el titulo no son vacios y
         // si estan definidos
-        isDefined([id,title, message, buttonText]) && 
-        !areIndexesEmpty([id,title, message, buttonText]) ?
-            createModal(
-                id, 
-                title, 
-                message,
-                buttonText
-            ) : null;
+        showModal(id, title, message,buttonText);
+        
     </script>
 </head>
 
