@@ -168,8 +168,6 @@
     echo '
     <h1>Actualizar tarea</h1>
     <form action="mod_editar.php" method="get">
-        <h3>ID</h3>
-        <input type="text" name="id_visible" value="' . $row["id"] . '" disabled>
         <input type="hidden" name="id" value="' . $row["id"] . '">
         <input type="hidden" name="id_lista" value="' . $id_lista . '">
 
