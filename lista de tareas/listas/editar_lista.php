@@ -1,10 +1,10 @@
 <?php 
-    require_once __DIR__ ."/../../components/db_queries.php";
-    require_once __DIR__ ."/../../components/users.php";
-    require_once __DIR__ ."/../../components/utils.php";
+    require_once __DIR__ ."/../components/db_queries.php";
+    require_once __DIR__ ."/../components/users.php";
+    require_once __DIR__ ."/../components/utils.php";
 
     executeIf(!isLoggedIn(), function() {
-        redirect('../../usuarios/iniciarSesion.php');
+        redirect('../usuarios/iniciarSesion.php');
     });
 ?>
 
@@ -17,8 +17,8 @@
     <title>Actualizar tarea</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="./../../css/modal.css">
-    <link rel="stylesheet" href="./../../css/style.css">
+    <link rel="stylesheet" href="./../css/modal.css">
+    <link rel="stylesheet" href="./../css/style.css">
 
     <style>
         * {
@@ -123,7 +123,7 @@
     </style>
     <script type="module">
         // Importa las funciones necesarias para crear el modal de 
-        import { createModal, showModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from './../../js/modals.js';
+        import { createModal, showModal, executeIf, isDefined, isEmpty, areIndexesEmpty} from './../js/modals.js';
         // Guarda el mensaje de  y el titulo en variables y 
         // si los sessions no estan definidos deja las variables vacias
         const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
@@ -168,8 +168,7 @@
     echo '
     <h1>Actualizar tarea</h1>
     <form action="mod_editar_lista.php" method="get">
-        <h3>ID</h3>
-        <input type="text" name="id_visible" value="' . $row["id"] . '" disabled>
+
         <input type="hidden" name="id" value="' . $row["id"] . '">
         <input type="hidden" name="id_lista" value="' . $id_cat . '">
 
@@ -184,7 +183,7 @@
         <button type="submit">Actualizar</button>
     </form>';
     ?>
-    <a href="../listasdiv.php" class="btn-light btn-volver">← Volver</a>
+    <a href="./listasdiv.php" class="btn-light btn-volver">← Volver</a>
 </div>
 </body>
 </html>

@@ -277,14 +277,14 @@ $result = $stmt->get_result();
                                 <i class="fa-solid fa-list-check"></i> Ver tareas
                             </a>
                             <a href="borrar_lista.php?id=' . htmlspecialchars($row['id']) . '" class="btn-delete" title="Eliminar lista" onclick="return confirm(\'¿Estás seguro que querés eliminar esta lista?\');">
-    <i class="fa-solid fa-trash"></i>
-</a>
-<a href="./tareas/editar_lista.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
-                      <i class="fa-solid fa-pen"></i> 
-                    </a>
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                            <a href="editar_lista.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
+                            <i class="fa-solid fa-pen"></i> 
+                            </a>
 
 
-                          </div>';
+                        </div>';
             }
             ?>
         </div>

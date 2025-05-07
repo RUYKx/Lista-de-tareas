@@ -1,10 +1,10 @@
 <?php
-    require_once __DIR__ ."/../../components/db_queries.php";
-    require_once __DIR__ ."/../../components/users.php";
-    require_once __DIR__ ."/../../components/utils.php";
+    require_once __DIR__ ."/../components/db_queries.php";
+    require_once __DIR__ ."/../components/users.php";
+    require_once __DIR__ ."/../components/utils.php";
 
     executeIf(!isLoggedIn(), function() {
-        redirect('../../usuarios/iniciarSesion.php');
+        redirect('../usuarios/iniciarSesion.php');
     });
 
     $isOk =
@@ -26,7 +26,7 @@
                     "Tarea modificada", 
                     "La tarea fue modificada correctamente", 
                     "Continuar",
-                    "./../listasdiv.php?"
+                    "./listasdiv.php?"
                 ): 
                 redirectModal(
                     "error", 
