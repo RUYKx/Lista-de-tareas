@@ -4,7 +4,7 @@ require_once __DIR__ . '/../components/utils.php';
 require_once __DIR__ . '/../components/db_queries.php';
 require_once __DIR__ . '/../components/users.php';
 
-executeIf(!isLoggedIn(), function() {
+executeIf(!isLoggedIn(), function () {
     redirect('../usuarios/iniciarSesion.php');
 });
 
@@ -18,11 +18,12 @@ $result = $stmt->get_result();
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Mis Listas</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
         body {
@@ -37,7 +38,7 @@ $result = $stmt->get_result();
             padding: 24px;
             background: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
         .header {
@@ -50,6 +51,17 @@ $result = $stmt->get_result();
             margin-bottom: 2.5%;
         }
 
+        .lista-card h3 {
+            margin: 0 0 10px;
+            color: #222;
+            font-size: 1.2rem;
+            cursor: default;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+        }
+
         h1 {
             font-size: 2rem;
             color: #111;
@@ -57,8 +69,7 @@ $result = $stmt->get_result();
             width: 50%;
         }
 
-        .agregar-contenedor
-        {   
+        .agregar-contenedor {
             display: flex;
             justify-content: flex-end;
             width: 50%;
@@ -81,16 +92,18 @@ $result = $stmt->get_result();
             text-decoration: none;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: background 0.3s ease;
-            
+
         }
 
         .btn-agregar:hover {
             background: #444;
         }
-        .agregar-icon{
+
+        .agregar-icon {
             padding: 0 6% 0 0;
             line-height: 90%;
         }
+
         .agregar-text {
             width: auto;
             padding: 0;
@@ -108,16 +121,17 @@ $result = $stmt->get_result();
             background: #fff;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
             width: 280px;
             text-align: center;
             position: relative;
-            border: 3px solid transparent; /* Add a transparent border by default */
+            border: 3px solid transparent;
+            /* Add a transparent border by default */
             transition: box-shadow 0.1s ease;
         }
 
         .lista-card:hover {
-            box-shadow: 0 0 3px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.1);
         }
 
         .lista-card h3 {
@@ -147,14 +161,15 @@ $result = $stmt->get_result();
             font-size: 0.95rem;
             cursor: pointer;
             text-decoration: none;
-            border: 4px solid transparent; /* Add a transparent border by default */
+            border: 4px solid transparent;
+            /* Add a transparent border by default */
             transition: border 0.1s ease;
             transition: box-shadow 0.1 ease;
         }
 
         .btn-ver-tareas:hover {
             border: 4px solid rgb(54, 176, 247);
-            box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.1);
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
         }
 
         .btn-delete {
@@ -172,15 +187,19 @@ $result = $stmt->get_result();
             padding: 0.5rem 0.4rem;
             font-size: 20px;
             color: rgb(180, 87, 87);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
-            transition: transform 0.25s ease; /* Smooth scaling animation */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            /* Add a subtle shadow */
+            transition: transform 0.25s ease;
+            /* Smooth scaling animation */
         }
 
         .btn-delete i:hover {
-            transform: scale(1.3); /* Scale up the icon */
+            transform: scale(1.3);
+            /* Scale up the icon */
             color: rgb(207, 39, 39);
             text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
         }
+
         .btn-light {
             display: inline-block;
             background-color: #f2f2f2;
@@ -204,8 +223,8 @@ $result = $stmt->get_result();
         .btn-light:hover {
             background-color: #ddd;
         }
-        
-    .btn-edit {
+
+        .btn-edit {
             position: absolute;
             bottom: 1.5rem;
             right: 3rem;
@@ -220,17 +239,21 @@ $result = $stmt->get_result();
             padding: 0.5rem 0.4rem;
             font-size: 20px;
             color: rgb(180, 87, 87);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
-            transition: transform 0.25s ease; /* Smooth scaling animation */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            /* Add a subtle shadow */
+            transition: transform 0.25s ease;
+            /* Smooth scaling animation */
         }
 
         .btn-edit i:hover {
-            transform: scale(1.3); /* Scale up the icon */
+            transform: scale(1.3);
+            /* Scale up the icon */
             color: rgb(207, 39, 39);
             text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
+
 <body>
     <div class="listas-wrapper">
         <div class="header">
@@ -241,13 +264,13 @@ $result = $stmt->get_result();
                     <i class="agregar-text">Añade una Lista</i>
                 </a>
             </div>
-                                    
+
         </div>
 
         <div class="listas-container">
-            <?php 
-                while ($row = $result->fetch_assoc()) {
-                    echo '<div class="lista-card">
+            <?php
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="lista-card">
                             <h3>' . htmlspecialchars($row['nombre']) . '</h3>
                             <p>' . htmlspecialchars($row['descripcion']) . '</p>
                             <a href="lista.php?id_lista=' . $row['id'] . '" class="btn-ver-tareas">
@@ -262,10 +285,11 @@ $result = $stmt->get_result();
 
 
                           </div>';
-                }
+            }
             ?>
         </div>
     </div>
     <a href="../index.php" class="btn-light btn-volver">← Volver</a>
 </body>
+
 </html>
