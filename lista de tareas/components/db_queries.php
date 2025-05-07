@@ -105,12 +105,15 @@ function eliminarTareasDeLista($id_lista) {
 
 function eliminarLista($id_lista) {
     global $connection;
+
+    $res = eliminarTareasDeLista($id_lista);
+    
     $stmt = $connection->prepare("DELETE FROM listas WHERE id = ?");
     $stmt->bind_param("i", $id_lista);
     $query = $stmt->execute();
     $stmt->close();
 
-    $res = isQuerySuccessful($query);
+    $res = isQuerySuccessful($query) && $res;
     return $res;
 
 }

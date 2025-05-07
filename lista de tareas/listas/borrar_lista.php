@@ -9,14 +9,23 @@ executeIf(!isLoggedIn(), function() {
 
 $id_lista = $_GET['id'] ?? null;
 
-if ($id_lista) {
-    // Borrar todas las tareas de esa lista
-    eliminarTareasDeLista($id_lista);
+$isOk=
+isset($_GET["id"]) ?
+    eliminarLista($id_lista)
+    : false;
 
-    // Borrar la lista en sí
-    eliminarLista($id_lista);
-}
-
-// Redirige a listasdiv.php después de borrar
-redirect("listasdiv.php");
+// Redirige a la lista de repertorios de donde se borró
+$isOk ? redirectModal(
+    "success", 
+    "Lista borrada", 
+    "La lista fue borrada exitosamente", 
+    "Continuar",
+    "./listasdiv.php"
+) : redirectModal(
+    "error", 
+    "Error al borrar la lista", 
+    "Ha habido un error, recargue la pagina de nuevo", 
+    "Volver a intentar",
+    "./listasdiv.php"
+);
 ?>

@@ -24,6 +24,35 @@ $result = $stmt->get_result();
     <title>Mis Listas</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="../css/modal.css">
+
+    <script type="module">
+        // Importa las funciones necesarias para crear el modal de 
+        import {
+        createModal,
+        executeIf,
+        isDefined,
+        isEmpty,
+        areIndexesEmpty,
+        showModal
+        } from './../js/modals.js';
+
+        window.showModal = showModal;
+
+        // Guarda el mensaje de  y el titulo en variables y 
+        // si los sessions no estan definidos deja las variables vacias
+        const id = '<?php echo $_SESSION['modal_id'] ?? ''; ?>';
+        const title = '<?php echo $_SESSION['modal_title'] ?? ''; ?>';
+        const message = '<?php echo $_SESSION['modal_message'] ?? ''; ?>';
+        const buttonText = '<?php echo $_SESSION['modal_button_text'] ?? ''; ?>';
+
+        // Elimina las variables de sesion relacionadas al  para que no se muestren de nuevo
+        <?php unsetSessions(['modal_id', 'modal_title', 'modal_message', 'modal_button_text']); ?>
+
+        // Ejecuta la funcion createModal si el mensaje de  y el titulo no son vacios y
+        // si estan definidos
+        showModal(id, title, message, buttonText);
+    </script>
 
     <style>
         body {
@@ -276,7 +305,17 @@ $result = $stmt->get_result();
                             <a href="lista.php?id_lista=' . $row['id'] . '" class="btn-ver-tareas">
                                 <i class="fa-solid fa-list-check"></i> Ver tareas
                             </a>
-                            <a href="borrar_lista.php?id=' . htmlspecialchars($row['id']) . '" class="btn-delete" title="Eliminar lista" onclick="return confirm(\'¿Estás seguro que querés eliminar esta lista?\');">
+                            <a href="javascript:void(0);" 
+                                class="btn-delete" 
+                                title="Eliminar lista"
+                                onclick="showModal(
+                                    \'confirm\',
+                                    \'Confirmar accion\',
+                                    \'¿Realmente desea eliminar la lista?<br>Esta accion no se podra revertir\',
+                                    \'Cancelar\',
+                                    \'Confirmar\',
+                                    \'./borrar_lista.php?id=' . htmlspecialchars($row['id']) . '\'
+                                )">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                             <a href="editar_lista.php?id=' . $row["id"] . '" class="btn-icon btn-edit">
